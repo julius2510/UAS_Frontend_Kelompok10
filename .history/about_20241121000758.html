@@ -7,6 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+
   <div class="d-flex">
     <!-- Sidebar Navbar -->
     <nav class="bg-light p-3 d-flex flex-column justify-content-between" style="width: 250px; height: 100vh; position: fixed; top: 0; left: 0; overflow-y: auto;">
@@ -85,18 +86,14 @@
                 <li><a href="about.html" class="nav-link text-secondary">About Us</a></li>
                 <li><a href="contact.html" class="nav-link text-secondary">Contact Us</a></li>
                 <li><a href="faq.html" class="nav-link text-secondary">FAQ</a></li>
-
               </ul>
             </div>
           </li>
         </ul>
-
-        
       </div>
 
       <!-- Footer -->
       <div>
-       
         <ul class="list-unstyled">
           <li><a href="#" class="nav-link text-secondary">Privacy</a></li>
           <li><a href="#" class="nav-link text-secondary">Terms and Conditions</a></li>
@@ -112,34 +109,54 @@
       </div>
     </nav>
 
-<!-- Main Content -->
-<div class="container mt-5" style="margin-left: 260px;">
-  <h1 class="text-center mb-4 fs-1 fw-bold" style="font-family: cursive;">Cooking Mama</h1>
-  <div class="d-flex justify-content-center">
-    <form id="searchForm" class="d-flex flex-column w-75">
-      <div class="input-group mb-3">
-        <input type="text" id="query" class="form-control me-2 rounded-pill" placeholder="Cari Resep Makanan">
-        <button type="submit" class="btn btn-primary rounded-pill">Cari</button>
+    <!-- Main Content -->
+   <!-- Main Content -->
+<div class="container-fluid" style="margin-left: 300px; margin-right: 50px; padding-top: 50px;">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="text-center mb-4 fs-3" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">About Cooking Mama</h1>
+        <p class="lead" style="font-size: 1.2rem; line-height: 1.6;">
+          Cooking Mama is a delightful and fun-filled cooking game where you can experiment with various ingredients and recipes.
+          The game offers a variety of cooking challenges that allow you to prepare delicious meals and unlock new recipes as you progress.
+          Whether you're a seasoned chef or a beginner, Cooking Mama offers a unique experience where you can enjoy the art of cooking from the comfort of your home.
+        </p>
+  
+        <h5 class=" mt-4">Our Mission</h5>
+        <p>
+          Our mission is to inspire creativity in the kitchen and provide users with easy-to-follow, healthy, and delicious recipes.
+          We aim to bring people together through the love of food, cooking, and sharing.
+        </p>
+  
+        <h5 class="mt-4">The Team</h5>
+        <p>
+          Cooking Mama is developed by a passionate team of food enthusiasts and game developers who strive to make the cooking experience both enjoyable and educational.
+          With years of experience in the culinary and gaming industries, our team is dedicated to bringing you the best cooking game experience.
+        </p>
+  
+        <!-- Additional Content -->
+        <h5 class="mt-4">Our Features</h5>
+        <p>
+          Cooking Mama offers a variety of features that make it stand out from other cooking games. Players can explore a wide range of recipes, 
+          from appetizers to desserts, and even master advanced cooking techniques. The intuitive controls and engaging gameplay make it accessible 
+          for all ages, ensuring that everyone can enjoy the thrill of cooking, regardless of their skill level.
+        </p>
+  
+        <h5 class="mt-4">Why Cooking Mama?</h5>
+        <p>
+          Cooking Mama isn't just about cooking; it's about having fun, learning, and improving your culinary skills. 
+          Whether you're a cooking enthusiast looking to try new dishes or someone who wants to learn the basics of cooking, this game provides an engaging and interactive experience. 
+          With easy-to-follow instructions, vibrant visuals, and rewarding gameplay, Cooking Mama is the perfect way to enjoy the art of cooking from your own home.
+        </p>
+  
+        <h5 class="mt-4">Join the Cooking Mama Community</h5>
+        <p>
+          Join our growing community of passionate cooks and gamers! Share your favorite recipes, tips, and cooking experiences with other players. 
+          With regular updates, new challenges, and exciting features, Cooking Mama continues to bring people together through the love of cooking and gaming.
+        </p>
       </div>
-      <!-- Filter options -->
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <label for="ingredients" class="form-label">Bahan (opsional):</label>
-          <input type="text" id="ingredients" class="form-control rounded-pill" placeholder="Pisahkan dengan koma">
-        </div>
-        <div class="col-md-6">
-          <label for="maxCalories" class="form-label">Kalori Maksimal (opsional):</label>
-          <input type="number" id="maxCalories" class="form-control rounded-pill" placeholder="Contoh: 500">
-        </div>
-      </div>
-    </form>
+    </div>
   </div>
-  <div id="results" class="row g-4 mt-4"></div>
-  <div id="recipeDetails" class="mt-5"></div>
-</div>
-
-
-
+  
   <script src="script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>

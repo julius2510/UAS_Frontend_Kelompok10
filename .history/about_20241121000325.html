@@ -7,6 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+
   <div class="d-flex">
     <!-- Sidebar Navbar -->
     <nav class="bg-light p-3 d-flex flex-column justify-content-between" style="width: 250px; height: 100vh; position: fixed; top: 0; left: 0; overflow-y: auto;">
@@ -85,18 +86,14 @@
                 <li><a href="about.html" class="nav-link text-secondary">About Us</a></li>
                 <li><a href="contact.html" class="nav-link text-secondary">Contact Us</a></li>
                 <li><a href="faq.html" class="nav-link text-secondary">FAQ</a></li>
-
               </ul>
             </div>
           </li>
         </ul>
-
-        
       </div>
 
       <!-- Footer -->
       <div>
-       
         <ul class="list-unstyled">
           <li><a href="#" class="nav-link text-secondary">Privacy</a></li>
           <li><a href="#" class="nav-link text-secondary">Terms and Conditions</a></li>
@@ -112,34 +109,60 @@
       </div>
     </nav>
 
-<!-- Main Content -->
-<div class="container mt-5" style="margin-left: 260px;">
-  <h1 class="text-center mb-4 fs-1 fw-bold" style="font-family: cursive;">Cooking Mama</h1>
-  <div class="d-flex justify-content-center">
-    <form id="searchForm" class="d-flex flex-column w-75">
-      <div class="input-group mb-3">
-        <input type="text" id="query" class="form-control me-2 rounded-pill" placeholder="Cari Resep Makanan">
-        <button type="submit" class="btn btn-primary rounded-pill">Cari</button>
-      </div>
-      <!-- Filter options -->
-      <div class="row mb-3">
-        <div class="col-md-6">
-          <label for="ingredients" class="form-label">Bahan (opsional):</label>
-          <input type="text" id="ingredients" class="form-control rounded-pill" placeholder="Pisahkan dengan koma">
+   <!-- Main Content -->
+    <div class="container-fluid" style="margin-left: 250px; padding-top: 50px;">
+      <div class="about-section">
+        <div class="section-title">About Cooking Mama</div>
+
+        <div class="row">
+          <div class="col-lg-6 mb-4">
+            <img src="https://example.com/cooking-mama-image.jpg" alt="Cooking Mama Image" class="about-image">
+          </div>
+          <div class="col-lg-6">
+            <p class="about-text">
+              Cooking Mama is not just a game—it's an experience. Designed for all ages, it brings the joy of cooking directly into your hands, allowing you to prepare and create a variety of meals with simple tools and ingredients. With fun mini-games and a vast array of recipes, Cooking Mama is a great way to unwind and learn new cooking techniques. Whether you’re a professional chef or just starting out, Cooking Mama offers a fun and educational way to explore the world of food!
+            </p>
+            <p class="about-text">
+              Our goal is to make cooking exciting and accessible for everyone, giving you the chance to enjoy and share delicious meals with friends and family. Join us in this culinary journey where creativity meets cooking, and no dish is too difficult to prepare.
+            </p>
+          </div>
         </div>
-        <div class="col-md-6">
-          <label for="maxCalories" class="form-label">Kalori Maksimal (opsional):</label>
-          <input type="number" id="maxCalories" class="form-control rounded-pill" placeholder="Contoh: 500">
+
+        <div class="mission-text">
+          <h4 class="text-center">Our Mission</h4>
+          <p>
+            Our mission is to inspire creativity and confidence in the kitchen. We strive to provide users with easy-to-follow recipes that are not only fun to make but also promote healthy and delicious eating. With our app, we aim to bring people closer together through the universal love of food and cooking, one recipe at a time.
+          </p>
+        </div>
+
+        <h3 class="section-title mt-5">Meet the Team</h3>
+
+        <div class="team-member">
+          <img src="https://example.com/team-member1.jpg" alt="Team Member 1">
+          <div>
+            <div class="name">Alice Johnson</div>
+            <div class="role">Lead Chef & Designer</div>
+          </div>
+        </div>
+
+        <div class="team-member">
+          <img src="https://example.com/team-member2.jpg" alt="Team Member 2">
+          <div>
+            <div class="name">John Doe</div>
+            <div class="role">Game Developer</div>
+          </div>
+        </div>
+
+        <div class="team-member">
+          <img src="https://example.com/team-member3.jpg" alt="Team Member 3">
+          <div>
+            <div class="name">Emily Clark</div>
+            <div class="role">Marketing & Community</div>
+          </div>
         </div>
       </div>
-    </form>
+    </div>
   </div>
-  <div id="results" class="row g-4 mt-4"></div>
-  <div id="recipeDetails" class="mt-5"></div>
-</div>
-
-
-
   <script src="script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>

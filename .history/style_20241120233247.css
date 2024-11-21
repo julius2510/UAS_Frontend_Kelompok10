@@ -1,0 +1,60 @@
+@font-face {
+    font-family: 'Europa Light';
+    src: url('https://x.yummlystatic.com/font/europa-light-webfont.woff2') format('woff2'), url('https://x.yummlystatic.com/font/woff/europa-light-webfont.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Europa';
+    src: url('https://x.yummlystatic.com/font/europa-regular-webfont.woff2') format('woff2'), url('https://x.yummlystatic.com/font/woff/europa-regular-webfont.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Europa Bold';
+    src: url('https://x.yummlystatic.com/font/europa-bold-webfont.woff2') format('woff2'), url('https://x.yummlystatic.com/font/woff/europa-bold-webfont.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  html {
+    /* fix double scrollbar issue */
+    overflow: hidden;
+  }
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -ms-font-smoothing: antialiased;
+    -o-font-smoothing: antialiased;
+    font-: antialiased;
+  }
+  .coworker {
+    margin: 1em auto 0 !important;
+  }
+  .asterisk {
+    font-size: 0.3333em;
+    position: relative;
+    top: -1.5em;
+  }
+  .stats-disclaimer {
+    font-size: 12px;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, 0.5);
+  }
+  #body-careers.yummly-2018 .section-hero .btn-green {
+    border-radius: 3em;
+    padding: 1em 1.5em;
+    font-size: 14px;
+    line-height: 1;
+  }
+  #body-about.yummly-2018 .section-hero h3 {
+    line-height: 1.25;
+  }
+  @media (max-width: 767px) {
+    #body-careers.yummly-2018 .section-apply .container {
+      padding: 0 4px;
+    }
+  }
+  #grnhse_app {
+    min-height: 640px;
+  }

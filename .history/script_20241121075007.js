@@ -4,13 +4,8 @@ const resultsDiv = document.getElementById('results');
 const recipeDetailsDiv = document.getElementById('recipeDetails');
 
 // Fungsi untuk mendapatkan data resep
-async function getRecipes(query, ingredients = '', maxCalories = '') {
-  // Buat URL dengan parameter dinamis
-  let apiUrl = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${apiKey}`;
-  if (query) apiUrl += `&query=${query}`;
-  if (ingredients) apiUrl += `&includeIngredients=${ingredients}`;
-  if (maxCalories) apiUrl += `&maxCalories=${maxCalories}`;
-
+async function getRecipes(query, ingredients, maxCalories) {
+  const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?query=${query}&includeIngredients=${ingredients}&maxCalories=${maxCalories}&apiKey=${apiKey}`;
   try {
     const response = await fetch(apiUrl);
     const data = await response.json();
@@ -18,6 +13,19 @@ async function getRecipes(query, ingredients = '', maxCalories = '') {
   } catch (error) {
     console.error('Error fetching recipes:', error);
     resultsDiv.innerHTML = `<p class="text-danger text-center">Terjadi kesalahan saat mengambil data.</p>`;
+  }
+}
+
+// Fungsi untuk mendapatkan detail resep
+async function getRecipeDetails(recipeId) {
+  const apiUrl = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`;
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching recipe details:', error);
+    recipeDetailsDiv.innerHTML = `<p class="text-danger text-center">Terjadi kesalahan saat mengambil detail resep.</p>`;
   }
 }
 
@@ -37,6 +45,7 @@ function displayRecipes(recipes) {
           <img src="${recipe.image}" class="card-img-top" alt="${recipe.title}">
           <div class="card-body">
             <h5 class="card-title fw-bold">${recipe.title}</h5>
+            <p class="text-muted">ID Resep: ${recipe.id}</p>
             <button class="btn btn-info rounded-pill" onclick="showRecipeDetails(${recipe.id})">Lihat Detail</button>
           </div>
         </div>
@@ -44,19 +53,6 @@ function displayRecipes(recipes) {
     `;
     resultsDiv.innerHTML += recipeCard;
   });
-}
-
-// Fungsi untuk mendapatkan detail resep
-async function getRecipeDetails(recipeId) {
-  const apiUrl = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`;
-  try {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error fetching recipe details:', error);
-    recipeDetailsDiv.innerHTML = `<p class="text-danger text-center">Terjadi kesalahan saat mengambil detail resep.</p>`;
-  }
 }
 
 // Fungsi untuk menampilkan detail resep
@@ -88,9 +84,9 @@ async function showRecipeDetails(recipeId) {
 // Event listener untuk form pencarian
 searchForm.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const query = document.getElementById('query').value; // Nama resep
-  const ingredients = document.getElementById('ingredients').value; // Filter bahan
-  const maxCalories = document.getElementById('maxCalories').value; // Filter kalori
+  const query = document.getElementById('query').value;
+  const ingredients = document.getElementById('ingredients').value;
+  const maxCalories = document.getElementById('maxCalories').value;
 
   const recipes = await getRecipes(query, ingredients, maxCalories);
   displayRecipes(recipes);
