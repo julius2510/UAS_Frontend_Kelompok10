@@ -85,7 +85,7 @@ async function showRecipeDetails(recipeId) {
   `;
 }
 
-// Event listener untuk form pencarian
+// Event listener untuk form pencarian resep
 searchForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const query = document.getElementById('query').value; // Nama resep
