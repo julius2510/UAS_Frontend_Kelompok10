@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cooking Mama</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+  <div class="d-flex">
+    <!-- Sidebar Navbar -->
+    <nav class="bg-light p-3 d-flex flex-column justify-content-between" style="width: 250px; height: 100vh; position: fixed; top: 0; left: 0; overflow-y: auto;">
+      <!-- Header -->
+      <div>
+        <h2 class="fs-4 fw-bold text-primary text-center" style="font-family: cursive;">Cooking Mama</h2>
+        <a href="/views/" style="text-decoration: none;">
+        <button class="btn btn-success w-100 rounded-pill my-3">Sign Up / Log In</button>
+      </a>
+        <ul class="nav flex-column">  
+          <!-- Smart Thermometer -->
+          <li class="nav-item">
+            <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseThermometer" role="button" aria-expanded="false" aria-controls="collapseThermometer">
+              Smart Thermometer <span class="float-end">&rsaquo;</span>
+            </a>
+            <div class="collapse" id="collapseThermometer">
+              <ul class="list-unstyled ps-3">
+                <li><a href="#" class="nav-link text-secondary">Temperature Settings</a></li>
+                <li><a href="#" class="nav-link text-secondary">Device Connectivity</a></li>
+              </ul>
+            </div>
+          </li>
+          <!-- Meal Planning -->
+          <li class="nav-item">
+            <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseMealPlanning" role="button" aria-expanded="false" aria-controls="collapseMealPlanning">
+              Meal Planning <span class="float-end">&rsaquo;</span>
+            </a>
+            <div class="collapse" id="collapseMealPlanning">
+              <ul class="list-unstyled ps-3">
+                <li><a href="#" class="nav-link text-secondary">Weekly Plan</a></li>
+                <li><a href="#" class="nav-link text-secondary">Shopping List</a></li>
+              </ul>
+            </div>
+          </li>
+          <!-- Recipes -->
+          <li class="nav-item">
+            <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseRecipes" role="button" aria-expanded="false" aria-controls="collapseRecipes">
+              Recipes <span class="float-end">&rsaquo;</span>
+            </a>
+            <div class="collapse" id="collapseRecipes">
+              <ul class="list-unstyled ps-3">
+                <li><a href="#" class="nav-link text-secondary">Popular Recipes</a></li>
+                <li><a href="#" class="nav-link text-secondary">Quick Recipes</a></li>
+              </ul>
+            </div>
+          </li>
+          <!-- Articles -->
+          <li class="nav-item">
+            <a href="#" class="nav-link text-dark">Articles <span class="float-end"></span></a>
+          </li>
+          <!-- Saved Recipes -->
+          <li class="nav-item">
+            <a href="#" class="nav-link text-dark">Saved Recipes <span class="float-end"></span></a>
+          </li>
+          <!-- More Tools -->
+          <li class="nav-item">
+            <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseTools" role="button" aria-expanded="false" aria-controls="collapseTools">
+              More Tools <span class="float-end">&rsaquo;</span>
+            </a>
+            <div class="collapse" id="collapseTools">
+              <ul class="list-unstyled ps-3">
+                <li><a href="#" class="nav-link text-secondary">Cooking Timer</a></li>
+                <li><a href="#" class="nav-link text-secondary">Measurement Converter</a></li>
+              </ul>
+            </div>
+          </li>
+          <!-- Download the App -->
+          <li class="nav-item">
+            <a href="#" class="nav-link text-dark">Download the App <span class="float-end"></span></a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseAbout" role="button" aria-expanded="false" aria-controls="collapseTools">
+              About Cooking Mama <span class="float-end">&rsaquo;</span>
+            </a>
+            <div class="collapse" id="collapseAbout">
+              <ul class="list-unstyled ps-3">
+                <li><a href="about.html" class="nav-link text-secondary">About Us</a></li>
+                <li><a href="contact.html" class="nav-link text-secondary">Contact Us</a></li>
+                <li><a href="faq.html" class="nav-link text-secondary">FAQ</a></li>
+
+              </ul>
+            </div>
+          </li>
+        </ul>
+
+        
+      </div>
+
+      <!-- Footer -->
+      <div>
+       
+        <ul class="list-unstyled">
+          <li><a href="#" class="nav-link text-secondary">Privacy</a></li>
+          <li><a href="#" class="nav-link text-secondary">Terms and Conditions</a></li>
+          <li><a href="#" class="nav-link text-secondary">Copyright</a></li>
+        </ul>
+        <div class="d-flex justify-content-between mt-3">
+          <a href="#" class="text-secondary"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-pinterest"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-youtube"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-tiktok"></i></a>
+        </div>
+        <p class="text-secondary mt-3 text-center small">© 2024 Cooking Mama. All rights reserved.</p>
+      </div>
+    </nav>
+
+<!-- Main Content -->
+<div class="container mt-5" style="margin-left: 260px;">
+  <h1 class="text-center mb-4 fs-1 fw-bold" style="font-family: cursive;">Cooking Mama</h1>
+  <div class="d-flex justify-content-center">
+    <form id="searchForm" class="d-flex flex-column w-75">
+      <div class="input-group mb-3">
+        <input type="text" id="query" class="form-control me-2 rounded-pill" placeholder="Cari Resep Makanan">
+        <button type="submit" class="btn btn-primary rounded-pill">Cari</button>
+      </div>
+      <!-- Filter options -->
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="ingredients" class="form-label">Bahan (opsional):</label>
+          <input type="text" id="ingredients" class="form-control rounded-pill" placeholder="Pisahkan dengan koma">
+        </div>
+        <div class="col-md-6">
+          <label for="maxCalories" class="form-label">Kalori Maksimal (opsional):</label>
+          <input type="number" id="maxCalories" class="form-control rounded-pill" placeholder="Contoh: 500">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div id="results" class="row g-4 mt-4"></div>
+  <div id="recipeDetails" class="mt-5"></div>
+</div>
+
+
+
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
+</body>
+</html>
