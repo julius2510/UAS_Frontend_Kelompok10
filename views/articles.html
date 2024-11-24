@@ -1,36 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cooking Mama</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-  <style>
-    .carousel-item {
-      transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
-    }
-    
-    .carousel-item.active {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    
-    .carousel-item-next,
-    .carousel-item-prev {
-      transform: translateY(100%);
-      opacity: 0;
-    }
-    </style>    
-</head>
-<body>
-  <div class="d-flex">
-    <!-- Sidebar Navbar -->
-    <nav class="bg-light p-3 d-flex flex-column justify-content-between" style="width: 250px; height: 100vh; position: fixed; top: 0; left: 0; overflow-y: auto;">
-      <!-- Header -->
-      <div>
-        <a href="/" style="text-decoration: none;">
-          <h2 class="fs-4 fw-bold text-primary text-center" style="font-family: cursive;">Cooking Mama</h2>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cooking Mama</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+      .carousel-item {
+        transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out;
+      }
+
+      .carousel-item.active {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .carousel-item-next,
+      .carousel-item-prev {
+        transform: translateY(100%);
+        opacity: 0;
+      }
+
+      /* Styling for tags */
+      .tag {
+        display: inline-block;
+        margin: 5px;
+        padding: 10px 20px;
+        border-radius: 50px;
+        background-color: #f1f1f1;
+        color: #333;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .tag:hover {
+        background-color: #007bff;
+        color: white;
+      }
+
+      .card {
+        display: none;
+      }
+
+      .card.show {
+        display: block;
+      }
+
+      .text-center.mt-4 {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="d-flex">
+      <!-- Sidebar Navbar -->
+      <nav class="bg-light p-3 d-flex flex-column justify-content-between" style="width: 250px; height: 100vh; position: fixed; top: 0; left: 0; overflow-y: auto;">
+        <!-- Header -->
+        <div>
+          <a href="/" style="text-decoration: none;">
+            <h2 class="fs-4 fw-bold text-primary text-center" style="font-family: cursive;">Cooking Mama</h2>
           </a>
         <a href="/loginin" style="text-decoration: none;">
         <button class="btn btn-success w-100 rounded-pill my-3">Sign Up / Log In</button>
@@ -105,9 +135,10 @@
             </a>
             <div class="collapse" id="collapseAbout">
               <ul class="list-unstyled ps-3">
-                <li><a href="/about#about" class="nav-link text-secondary">About Us</a></li>
-                <li><a href="/about#contact" class="nav-link text-secondary">Contact Us</a></li>
-                <li><a href="/about#faq" class="nav-link text-secondary">FAQ</a></li>
+                <li><a href="/about" class="nav-link text-secondary">About Us</a></li>
+                <li><a href="contact.html" class="nav-link text-secondary">Contact Us</a></li>
+                <li><a href="faq.html" class="nav-link text-secondary">FAQ</a></li>
+
               </ul>
             </div>
           </li>
@@ -116,28 +147,28 @@
         
       </div>
 
-      <!-- Footer -->
-      <div>
-       
-        <ul class="list-unstyled">
-          <li><a href="#" class="nav-link text-secondary">Privacy</a></li>
-          <li><a href="#" class="nav-link text-secondary">Terms and Conditions</a></li>
-          <li><a href="#" class="nav-link text-secondary">Copyright</a></li>
-        </ul>
-        <div class="d-flex justify-content-between mt-3">
-          <a href="#" class="text-secondary"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="text-secondary"><i class="bi bi-pinterest"></i></a>
-          <a href="#" class="text-secondary"><i class="bi bi-youtube"></i></a>
-          <a href="#" class="text-secondary"><i class="bi bi-tiktok"></i></a>
+        <!-- Footer -->
+        <div>
+          <ul class="list-unstyled">
+            <li><a href="#" class="nav-link text-secondary">Privacy</a></li>
+            <li><a href="#" class="nav-link text-secondary">Terms and Conditions</a></li>
+            <li><a href="#" class="nav-link text-secondary">Copyright</a></li>
+          </ul>
+          <div class="d-flex justify-content-between mt-3">
+            <a href="#" class="text-secondary"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-secondary"><i class="bi bi-pinterest"></i></a>
+            <a href="#" class="text-secondary"><i class="bi bi-youtube"></i></a>
+            <a href="#" class="text-secondary"><i class="bi bi-tiktok"></i></a>
+          </div>
+          <p class="text-secondary mt-3 text-center small">© 2024 Cooking Mama. All rights reserved.</p>
         </div>
-        <p class="text-secondary mt-3 text-center small">© 2024 Cooking Mama. All rights reserved.</p>
-      </div>
-    </nav> 
-    <!-- Main Content -->
-    <div class="container-fluid" style="margin-left: 250px;">
+      </nav>
+
+      <!-- Main Content -->
+      <div class="container-fluid" style="margin-left: 250px;">
         <div class="row">
-        <!-- Article Header -->
-        <div class="col-12 my-4">
+          <!-- Article Header -->
+          <div class="col-12 my-4">
             <h1 class="text-center text-primary">Delicious Recipes for Every Meal</h1>
             <p class="text-center text-muted">Get inspired by our curated collection of cooking tips, recipes, and more!</p>
             <!-- Gambar Carousel -->
@@ -161,12 +192,24 @@
               </div>
             </div>
           </div>
-  
-          <!-- Articles List -->
+        </div>
+
+        <!-- Tags for Filtering -->
+        <div class="text-center mt-4">
+          <span class="tag" data-category="Healthy">Healthy</span>
+          <span class="tag" data-category="Quick">Quick</span>
+          <span class="tag" data-category="Easy">Easy</span>
+          <span class="tag" data-category="Desserts">Desserts</span>
+          <span class="tag" data-category="All">All</span> <!-- "All" filter -->
+        </div>
+
+        <!-- Articles List-->
+        <div class="row mt-4" id="articles-container">
+          <!-- Articles -->
           <div class="col-md-9">
             <div class="row">
               <!-- Article 1 -->
-              <div class="col-md-6 my-3">
+              <div class="col-md-6 my-3 card" data-category="Healthy">
                 <div class="card shadow-sm">
                   <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="article 1 image">
                   <div class="card-body">
@@ -177,7 +220,7 @@
                 </div>
               </div>
               <!-- Article 2 -->
-              <div class="col-md-6 my-3">
+              <div class="col-md-6 my-3 card" data-category="Quick">
                 <div class="card shadow-sm">
                   <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="article 2 image">
                   <div class="card-body">
@@ -188,7 +231,7 @@
                 </div>
               </div>
               <!-- Article 3 -->
-              <div class="col-md-6 my-3">
+              <div class="col-md-6 my-3 card" data-category="Easy">
                 <div class="card shadow-sm">
                   <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="article 3 image">
                   <div class="card-body">
@@ -197,9 +240,9 @@
                     <a href="#" class="btn btn-primary">Read Full Article</a>
                   </div>
                 </div>
-              </div>
-              <!-- Article 4 -->
-              <div class="col-md-6 my-3">
+                </div>
+                <!-- Article 4 -->
+                <div class="col-md-6 my-3 card" data-category="Desserts">
                 <div class="card shadow-sm">
                   <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="article 4 image">
                   <div class="card-body">
@@ -211,35 +254,38 @@
               </div>
             </div>
           </div>
-  
-          <!-- Sidebar: Related Articles -->
-          <div class="col-md-3 my-3">
-            <div class="card shadow-sm">
-              <div class="card-body">
-                <h5 class="card-title">Related Articles</h5>
-                <ul class="list-unstyled">
-                  <li><a href="#" class="text-decoration-none">How to Cook Perfect Rice</a></li>
-                  <li><a href="#" class="text-decoration-none">Vegetarian Meal Prep Ideas</a></li>
-                  <li><a href="#" class="text-decoration-none">5 Kitchen Hacks You Need to Know</a></li>
-                  <li><a href="#" class="text-decoration-none">Cooking for a Family: Tips & Tricks</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
-    </div>
-  
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const carousel = document.querySelector('#carouselExampleFadeUp');
-      const carouselInstance = new bootstrap.Carousel(carousel, {
-        interval: 3000, // Waktu antar slide (3 detik)
-        ride: 'carousel', // Memulai otomatis
-      });
-    });
+      <script>
+        window.addEventListener('DOMContentLoaded', () => {
+          const tags = document.querySelectorAll('.tag');
+          const cards = document.querySelectorAll('.card');
 
-    document.addEventListener('DOMContentLoaded', function () {
+          // Filter functionality
+          tags.forEach(tag => {
+            tag.addEventListener('click', () => {
+              const category = tag.getAttribute('data-category');
+              cards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+
+                if (category === 'All') {
+                  card.classList.add('show');
+                } else if (category === cardCategory) {
+                  card.classList.add('show');
+                } else {
+                  card.classList.remove('show');
+                }
+              });
+            });
+          });
+
+          // Show all articles on page load
+          cards.forEach(card => {
+            card.classList.add('show');
+          });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
     // Cek apakah pengguna sudah login
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
@@ -301,7 +347,7 @@
     `;
     signupLoginButton.outerHTML = userProfileHtml;
   }
-  </script>
+      </script>    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
   </html>

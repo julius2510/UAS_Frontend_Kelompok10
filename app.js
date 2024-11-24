@@ -97,7 +97,6 @@ const userSchema = new mongoose.Schema({
   email: { type: String, unique: true },
   phone: String,
   password: String,
-  profilePicture: { type: String, default: '/images/profile.png' },
 });
 
 
@@ -150,6 +149,7 @@ app.post('/login', async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
+        phone: user.phone
       },
     });
   } catch (error) {
@@ -227,6 +227,107 @@ app.delete('/delete-recipe/:id', async (req, res) => {
     res.status(500).json({ message: "Error deleting the recipe", error: error.message });
   }
 });
+
+// Middleware to parse incoming requests
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Update Profile API
+app.post('/api/update-profile', async (req, res) => {
+  const { email, newName, newEmail, newPhone, newPassword } = req.body;
+
+  try {
+    const updateFields = {};
+
+    // Update fields dynamically
+    if (newName) updateFields.name = newName;
+    if (newEmail) updateFields.email = newEmail;
+    if (newPhone) updateFields.phone = newPhone;
+    if (newPassword) {
+      const hashedPassword = await bcrypt.hash(newPassword, 10); // Enkripsi password
+      updateFields.password = hashedPassword;
+    }
+
+    // Cari pengguna berdasarkan email lama
+    const updatedUser = await User.findOneAndUpdate(
+      { email },
+      { $set: updateFields },
+      { new: true } // Mengembalikan dokumen yang diperbarui
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+
+    res.json({
+      success: true,
+      message: 'Profile updated successfully',
+      user: {
+        id: updatedUser._id,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        phone: updatedUser.phone,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Internal server error', error: error.message });
+  }
+});
+
+// Update Password Route
+app.post('/api/update-password', async (req, res) => {
+  const { email, newPassword } = req.body;
+
+  if (!email || !newPassword) {
+    return res.status(400).json({ success: false, message: 'Email and new password are required' });
+  }
+
+  try {
+    // Hash the new password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    // Find the user and update their password
+    const updatedUser = await User.findOneAndUpdate(
+      { email },
+      { password: hashedPassword },
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+
+    res.json({ success: true, message: 'Password updated successfully!' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+});
+
+// Delete Account Route
+app.post('/api/delete-account', async (req, res) => {
+  const { email } = req.body;  // Ambil email dari body permintaan
+
+  if (!email) {
+    return res.status(400).json({ success: false, message: 'Email is required' });
+  }
+
+  try {
+    // Mencari dan menghapus akun pengguna berdasarkan email
+    const user = await User.findOneAndDelete({ email });
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+
+    res.json({ success: true, message: 'Account deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Error deleting account' });
+  }
+});
+
 
 // Start the server
 app.listen(port, () => {

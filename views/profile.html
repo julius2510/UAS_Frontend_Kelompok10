@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <div class="d-flex">
+ <div class="d-flex">
     <!-- Sidebar Navbar -->
     <nav class="bg-light p-3 d-flex flex-column justify-content-between" style="width: 250px; height: 100vh; position: fixed; top: 0; left: 0; overflow-y: auto;">
       <!-- Header -->
@@ -19,8 +19,8 @@
           <h2 class="fs-4 fw-bold text-primary text-center" style="font-family: cursive;">Cooking Mama</h2>
         </a>
         <a href="/loginin" style="text-decoration: none;">
-        <button class="btn btn-success w-100 rounded-pill my-3">Sign Up / Log In</button>
-    </a>
+          <button class="btn btn-success w-100 rounded-pill my-3">Sign Up / Log In</button>
+        </a>
         <ul class="nav flex-column">
           <!-- Search Recipe -->
           <li class="nav-item">
@@ -96,12 +96,10 @@
             </div>
           </li>
         </ul>
-
       </div>
 
       <!-- Footer -->
       <div>
-
         <ul class="list-unstyled">
           <li><a href="#" class="nav-link text-secondary">Privacy</a></li>
           <li><a href="#" class="nav-link text-secondary">Terms and Conditions</a></li>
@@ -117,29 +115,56 @@
       </div>
     </nav>
 
-    <div class="container mt-5">
+    <!-- Main Content -->
+    <div class="container mt-5" style="margin-left: 260px;">
       <h1 class="text-center mb-4">Your Profile</h1>
       <div class="card mx-auto" style="max-width: 500px;">
         <div class="card-body text-center">
-          <img id="profilePicture" class="rounded-circle mb-3" src="https://via.placeholder.com/100" alt="Profile Picture" style="width: 100px; height: 100px;">
-          <h5 id="profileName" class="card-title"></h5>
-          <p id="profileEmail" class="card-text text-muted"></p>
+          <i id="profileIcon" class="bi bi-person-circle fs-1 text-secondary mb-3"></i>
 
-          <!-- Password Update Form -->
-          <form id="updatePasswordForm">
+          <!-- User Info Box -->
+          <div class="border p-3 rounded mb-4 text-start">
+            <p class="mb-1"><strong>Name:</strong> <span id="profileName"></span></p>
+            <p class="mb-1"><strong>Email:</strong> <span id="profileEmail"></span></p>
+            <p class="mb-1"><strong>Phone:</strong> <span id="profilePhone"></span></p>
+          </div>
+
+          <!-- Update Profile Form -->
+          <form id="updateProfileForm" class="mb-4">
+            <div class="mb-3">
+              <label for="newName" class="form-label">Name</label>
+              <input type="text" class="form-control" id="newName" placeholder="Update name">
+            </div>
+            <div class="mb-3">
+              <label for="newEmail" class="form-label">Email</label>
+              <input type="email" class="form-control" id="newEmail" placeholder="Update email">
+            </div>
+            <div class="mb-3">
+              <label for="newPhone" class="form-label">Phone Number</label>
+              <input type="tel" class="form-control" id="newPhone" placeholder="Update phone number">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Update Profile</button>
+          </form>
+
+          <!-- Update Password Form -->
+          <form id="updatePasswordForm" class="mb-4">
             <div class="mb-3">
               <label for="newPassword" class="form-label">New Password</label>
               <input type="password" class="form-control" id="newPassword" placeholder="Enter new password" required>
             </div>
-            <button type="submit" class="btn btn-primary">Update Password</button>
+            <button type="submit" class="btn btn-warning w-100">Update Password</button>
           </form>
 
-          <button class="btn btn-danger mt-3" id="logoutButton">Log Out</button>
+          <!-- Account Actions -->
+          <div class="d-flex justify-content-between">
+            <button class="btn btn-danger me-2 w-50" id="deleteAccountButton">Delete Account</button>
+            <button class="btn btn-secondary w-50" id="logoutButton">Log Out</button>
+          </div>
         </div>
       </div>
     </div>
-
   </div>
+  
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -152,9 +177,39 @@
       }
 
       // Populate user data
-      document.getElementById('profilePicture').src = user.profilePicture || 'https://via.placeholder.com/100';
       document.getElementById('profileName').innerText = user.name;
       document.getElementById('profileEmail').innerText = user.email;
+      document.getElementById('profilePhone').innerText = user.phone;
+
+      document.getElementById("updateProfileForm").addEventListener("submit", async (e) => { e.preventDefault();
+
+    const user = JSON.parse(localStorage.getItem("user"));
+    const newName = document.getElementById("newName").value || user.name;
+    const newEmail = document.getElementById("newEmail").value || user.email;
+    const newPhone = document.getElementById("newPhone").value || user.phone;
+    const newPassword = document.getElementById("newPassword").value;
+
+    try {
+      const response = await fetch("/api/update-profile", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: user.email, newName, newEmail, newPhone, newPassword }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        alert("Profile updated successfully!");
+        localStorage.setItem("user", JSON.stringify(result.user));
+        location.reload();
+      } else {
+        alert("Error updating profile: " + result.message);
+      }
+    } catch (error) {
+      alert("An error occurred while updating profile");
+      console.error(error);
+    }
+  });
 
       // Handle password update
       const updatePasswordForm = document.getElementById('updatePasswordForm');
@@ -162,42 +217,83 @@
         e.preventDefault();
         const newPassword = document.getElementById('newPassword').value;
 
-        if (newPassword) {
-          // Send request to the backend to update the password
+        try {
+          const response = await fetch('/api/update-password', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: user.email, newPassword }),
+          });
+
+          const result = await response.json();
+
+          if (result.success) {
+            alert('Password updated successfully!');
+          } else {
+            alert('Error updating password');
+          }
+        } catch (error) {
+          alert('An error occurred while updating password');
+        }
+      });
+
+      // Handle delete account
+      document.getElementById('deleteAccountButton').addEventListener('click', async () => {
+        if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
           try {
-            const response = await fetch('/api/update-password', {
+            const response = await fetch('/api/delete-account', {
               method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({
-                email: user.email,
-                newPassword
-              })
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email: user.email }),
             });
 
             const result = await response.json();
 
             if (result.success) {
-              alert('Password updated successfully!');
+              alert('Account deleted successfully');
+              localStorage.removeItem('user');
+              window.location.href = '/';
             } else {
-              alert('Error updating password');
+              alert('Error deleting account');
             }
           } catch (error) {
-            console.error(error);
-            alert('An error occurred while updating password');
+            alert('An error occurred while deleting account');
           }
-        } else {
-          alert('Please enter a new password');
         }
       });
 
-      // Log out functionality
+      // Handle log out
       document.getElementById('logoutButton').addEventListener('click', () => {
         localStorage.removeItem('user');
         alert('Logged out successfully!');
         window.location.href = '/';
       });
+    });
+
+    // Handle delete account
+    document.getElementById('deleteAccountButton').addEventListener('click', async () => {
+      if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+        try {
+          const user = JSON.parse(localStorage.getItem('user'));  // Ambil data pengguna dari localStorage
+          const response = await fetch('/api/delete-account', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: user.email }),  // Kirim email pengguna untuk dihapus
+          });
+
+          const result = await response.json();
+
+          if (result.success) {
+            alert('Account deleted successfully');
+            localStorage.removeItem('user');  // Hapus data pengguna dari localStorage
+            window.location.href = '/';  // Arahkan kembali ke halaman utama
+          } else {
+            alert('Error deleting account: ' + result.message);
+          }
+        } catch (error) {
+          alert('An error occurred while deleting account');
+          console.error(error);
+        }
+      }
     });
 
     document.addEventListener('DOMContentLoaded', function () {

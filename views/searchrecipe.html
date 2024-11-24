@@ -22,8 +22,16 @@
         <ul class="nav flex-column">
           <!-- Search Recipe -->
           <li class="nav-item">
-            <a href="/" class="nav-link text-dark">Search Recipe<span class="float-end"></span></a>
-          </li>
+            <a class="nav-link text-dark" data-bs-toggle="collapse" href="#myRecipe" role="button" aria-expanded="false" aria-controls="myRecipe">
+              My Recipe <span class="float-end">&rsaquo;</span>
+            </a>
+            <div class="collapse" id="myRecipe">
+              <ul class="list-unstyled ps-3">
+                <li><a href="/addRecipes" class="nav-link text-secondary">Add Recipe</a></li>
+                <li><a href="/searchrecipes" class="nav-link text-secondary">Search Recipe</a></li>
+              </ul>
+            </div>
+          </li> 
           <!-- Meal Planning -->
           <li class="nav-item">
             <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseMealPlanning" role="button" aria-expanded="false" aria-controls="collapseMealPlanning">
