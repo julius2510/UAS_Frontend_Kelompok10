@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saved Recipes</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+  <div class="d-flex">
+    <!-- Sidebar Navbar -->
+    <nav class="bg-light p-3 d-flex flex-column justify-content-between" style="width: 250px; height: 100vh; position: fixed; top: 0; left: 0; overflow-y: auto;">
+      <!-- Header -->
+      <div>
+        <a href="/" style="text-decoration: none;">
+          <h2 class="fs-4 fw-bold text-primary text-center" style="font-family: cursive;">Cooking Mama</h2>
+        </a>
+        <a href="/loginin" style="text-decoration: none;">
+          <button class="btn btn-success w-100 rounded-pill my-3">Sign Up / Log In</button>
+        </a>
+        <ul class="nav flex-column">
+          <!-- Search Recipe -->
+          <li class="nav-item">
+            <a href="/" class="nav-link text-dark">Search Recipe<span class="float-end"></span></a>
+          </li>
+          <!-- Meal Planning -->
+          <li class="nav-item">
+            <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseMealPlanning" role="button" aria-expanded="false" aria-controls="collapseMealPlanning">
+              Meal Planning <span class="float-end">&rsaquo;</span>
+            </a>
+            <div class="collapse" id="collapseMealPlanning">
+              <ul class="list-unstyled ps-3">
+                <li><a href="#" class="nav-link text-secondary">Weekly Plan</a></li>
+                <li><a href="#" class="nav-link text-secondary">Shopping List</a></li>
+              </ul>
+            </div>
+          </li>
+          <!-- Articles -->
+          <li class="nav-item">
+            <a href="/article" class="nav-link text-dark">Articles <span class="float-end"></span></a>
+          </li>
+          <!-- Saved Recipes -->
+          <li class="nav-item">
+            <a href="/resep" class="nav-link text-dark">Saved Recipes <span class="float-end"></span></a>
+          </li>
+          <!-- More Tools -->
+          <li class="nav-item">
+            <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseTools" role="button" aria-expanded="false" aria-controls="collapseTools">
+              More Tools <span class="float-end">&rsaquo;</span>
+            </a>
+            <div class="collapse" id="collapseTools">
+              <ul class="list-unstyled ps-3">
+                <li><a href="#" class="nav-link text-secondary">Cooking Timer</a></li>
+                <li><a href="#" class="nav-link text-secondary">Measurement Converter</a></li>
+              </ul>
+            </div>
+          </li>
+          <!-- Ingridients and Tools -->
+          <li class="nav-item">
+            <a class="nav-link text-dark" data-bs-toggle="collapse" href="#IntAndPro" role="button" aria-expanded="false" aria-controls="IntAndPro">
+              Ingridients and Groceries <span class="float-end">&rsaquo;</span>
+            </a>
+            <div class="collapse" id="IntAndPro">
+              <ul class="list-unstyled ps-3">
+                <li><a href="/searchTools" class="nav-link text-secondary">Search Tools</a></li>
+                <li><a href="/searchProducts" class="nav-link text-secondary">Search Grocery Products</a></li>
+              </ul>
+            </div>
+          </li>
+
+          <!-- Download the App -->
+          <li class="nav-item">
+            <a href="#" class="nav-link text-dark">Download the App <span class="float-end"></span></a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseAbout" role="button" aria-expanded="false" aria-controls="collapseTools">
+              About Cooking Mama <span class="float-end">&rsaquo;</span>
+            </a>
+            <div class="collapse" id="collapseAbout">
+              <ul class="list-unstyled ps-3">
+                <li><a href="/about#about" class="nav-link text-secondary">About Us</a></li>
+                <li><a href="/about#contact" class="nav-link text-secondary">Contact Us</a></li>
+                <li><a href="/about#faq" class="nav-link text-secondary">FAQ</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Footer -->
+      <div>
+        <ul class="list-unstyled">
+          <li><a href="#" class="nav-link text-secondary">Privacy</a></li>
+          <li><a href="#" class="nav-link text-secondary">Terms and Conditions</a></li>
+          <li><a href="#" class="nav-link text-secondary">Copyright</a></li>
+        </ul>
+        <div class="d-flex justify-content-between mt-3">
+          <a href="#" class="text-secondary"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-pinterest"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-youtube"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-tiktok"></i></a>
+        </div>
+        <p class="text-secondary mt-3 text-center small">© 2024 Cooking Mama. All rights reserved.</p>
+      </div>
+    </nav>
+    
+    const apiKey = 'c30bb4e46d6d4ec082eb3f1c8cf1c071';
+const searchProductsForm = document.getElementById('searchProductsForm');
+const productResultsDiv = document.getElementById('productResults');
+
+// Fungsi untuk mendapatkan data produk
+async function searchProducts(query = '', number = 9) {
+  const apiUrl = `https://api.spoonacular.com/food/products/search?apiKey=${apiKey}&query=${query}&number=${number}`;
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    return data.products; // Kembalikan array produk
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    productResultsDiv.innerHTML = `<p class="text-danger text-center">Terjadi kesalahan saat mengambil data produk.</p>`;
+  }
+}
+
+// Fungsi untuk menampilkan produk
+function displayProducts(products) {
+  productResultsDiv.innerHTML = '';
+  if (!products || products.length === 0) {
+    productResultsDiv.innerHTML = '<p class="text-center">Tidak ada produk ditemukan.</p>';
+    return;
+  }
+
+  products.forEach(product => {
+    const productCard = `
+      <div class="col-md-4">
+        <div class="card shadow-lg border-0 h-100" style="overflow: hidden; transition: transform 0.3s;">
+          <img src="${product.image}" class="card-img-top" alt="${product.title}" style="height: 200px; object-fit: cover;">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title text-primary fw-bold">${product.title}</h5>
+            <p class="text-secondary small">Kategori: ${product.category || 'Tidak diketahui'}</p>
+            <div class="mt-auto">
+              <button class="btn btn-success w-100 rounded-pill" onclick="alert('Produk ID: ${product.id}')">
+                <i class="bi bi-eye"></i> Lihat Detail
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    productResultsDiv.innerHTML += productCard;
+  });
+
+  // Tambahkan efek hover ke semua kartu
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    card.addEventListener('mouseover', () => {
+      card.style.transform = 'scale(1.05)';
+    });
+    card.addEventListener('mouseout', () => {
+      card.style.transform = 'scale(1)';
+    });
+  });
+}
+
+// Event listener untuk form pencarian produk
+searchProductsForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const query = document.getElementById('productQuery').value;
+
+  const products = await searchProducts(query, 12); // Cari dengan query
+  displayProducts(products);
+});
+
+// Tampilkan produk default saat halaman dimuat
+document.addEventListener('DOMContentLoaded', async () => {
+  const defaultProducts = await searchProducts('', 9); // Ambil 9 produk default
+  displayProducts(defaultProducts);
+});
+    document.addEventListener('DOMContentLoaded', function () {
+    // Cek apakah pengguna sudah login
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+      updateNavbarForLoggedInUser(user);
+    }
+
+    // Tambahkan event listener untuk form login dan signup
+    document.getElementById("loginForm").addEventListener("submit", handleFormSubmit);
+    document.getElementById("signupForm").addEventListener("submit", handleFormSubmit);
+  });
+
+  async function handleFormSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const formType = event.target.id; // loginForm atau signupForm
+    const data = Object.fromEntries(formData.entries());
+    const formAction = formType === "loginForm" 
+      ? "http://localhost:3000/login" 
+      : "http://localhost:3000/signup";
+
+    try {
+      const response = await fetch(formAction, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        alert(error.message || "Terjadi kesalahan");
+        return;
+      }
+
+      const result = await response.json();
+      // Simpan data pengguna ke localStorage
+      localStorage.setItem("user", JSON.stringify(result.user));
+
+      // Update navbar dengan informasi pengguna
+      updateNavbarForLoggedInUser(result.user);
+
+      // Arahkan ke halaman utama atau profil
+      window.location.href = "/";
+    } catch (error) {
+      alert("Terjadi kesalahan: " + error.message);
+    }
+  }
+
+  function updateNavbarForLoggedInUser(user) {
+    const navbar = document.querySelector("nav");
+    const signupLoginButton = navbar.querySelector(".btn");
+    const userProfileHtml = `
+      <div class="d-flex align-items-center ms-5">
+        <i class="bi bi-person-circle fs-3 text-secondary me-2"></i>
+        <a href="/profile" style="text-decoration: none;">${user.name}</a>
+      </div>
+    `;
+    signupLoginButton.outerHTML = userProfileHtml;
+  }
+  </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
