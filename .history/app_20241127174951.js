@@ -113,11 +113,6 @@ app.get('/Chatbot', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'Chatbot.html'));
 });
 
-app.get('/Tools', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'Tools.html'));
-});
-
-
 // MongoDB Connection
 mongoose
   .connect('mongodb://localhost:27017/cooking_mama',)

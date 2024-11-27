@@ -113,8 +113,8 @@ app.get('/Chatbot', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'Chatbot.html'));
 });
 
-app.get('/Tools', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'Tools.html'));
+app.get('/Chatbot', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'Chatbot.html'));
 });
 
 

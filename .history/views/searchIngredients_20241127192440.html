@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit Recipe</title>
+  <title>Saved Recipes</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
-  <!-- Sidebar -->
   <div class="d-flex">
+    <!-- Sidebar Navbar -->
     <nav class="bg-light p-3 d-flex flex-column justify-content-between" style="width: 250px; height: 100vh; position: fixed; top: 0; left: 0; overflow-y: auto;">
       <!-- Header -->
       <div>
@@ -20,7 +20,7 @@
           <button class="btn btn-success w-100 rounded-pill my-3">Sign Up / Log In</button>
         </a>
         <ul class="nav flex-column">
-          <!-- Sidebar menu items -->
+          <!-- Search Recipe -->
           <li class="nav-item">
             <a class="nav-link text-dark" data-bs-toggle="collapse" href="#myRecipe" role="button" aria-expanded="false" aria-controls="myRecipe">
               My Recipe <span class="float-end">&rsaquo;</span>
@@ -32,8 +32,9 @@
               </ul>
             </div>
           </li> 
-        <!-- Meal Planning -->
-        <li class="nav-item">
+
+          <!-- Meal Planning -->
+         <li class="nav-item">
           <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseMealPlanning" role="button" aria-expanded="false" aria-controls="collapseMealPlanning">
             Meal Planning <span class="float-end">&rsaquo;</span>
           </a>
@@ -46,34 +47,45 @@
           </div>
         </li>
 
+          <!-- Articles -->
           <li class="nav-item">
-            <a href="/article" class="nav-link text-dark">Articles</a>
+            <a href="/article" class="nav-link text-dark">Articles <span class="float-end"></span></a>
           </li>
+          <!-- Saved Recipes -->
           <li class="nav-item">
-            <a href="/resep" class="nav-link text-dark">Saved Recipes</a>
+            <a href="/resep" class="nav-link text-dark">Saved Recipes <span class="float-end"></span></a>
           </li>
+          <!-- More Tools -->
           <li class="nav-item">
-            <a href="/Tools" class="nav-link text-dark">Tools <span class="float-end"></span></a>
+            <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseTools" role="button" aria-expanded="false" aria-controls="collapseTools">
+              More Tools <span class="float-end">&rsaquo;</span>
+            </a>
+            <div class="collapse" id="collapseTools">
+              <ul class="list-unstyled ps-3">
+                <li><a href="#" class="nav-link text-secondary">Cooking Timer</a></li>
+                <li><a href="#" class="nav-link text-secondary">Measurement Converter</a></li>
+              </ul>
+            </div>
           </li>
-
       <!-- Ingridients and Tools -->
       <li class="nav-item">
         <a class="nav-link text-dark" data-bs-toggle="collapse" href="#IntAndPro" role="button" aria-expanded="false" aria-controls="IntAndPro">
-          Ingredients & Groceries <span class="float-end">&rsaquo;</span>
+          Ingridients and Groceries <span class="float-end">&rsaquo;</span>
         </a>
         <div class="collapse" id="IntAndPro">
           <ul class="list-unstyled ps-3">
-            <li><a href="/searchIngredients" class="nav-link text-secondary">Search Ingredients</a></li>
+            <li><a href="/searchIngridients" class="nav-link text-secondary">Search Ingridients</a></li>
             <li><a href="/searchProducts" class="nav-link text-secondary">Search Grocery Products</a></li>
           </ul>
         </div>
       </li>
-       <!-- Chatbot -->
-       <li class="nav-item">
-        <a href="/Chatbot" class="nav-link text-dark">Chatbot <span class="float-end"></span></a>
-      </li>
+
+           <!-- Chatbot -->
+           <li class="nav-item">
+            <a href="/Chatbot" class="nav-link text-dark">Chatbot <span class="float-end"></span></a>
+          </li>
           <li class="nav-item">
-            <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseAbout" role="button" aria-expanded="false" aria-controls="collapseAbout">
+            <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseAbout" role="button" aria-expanded="false" aria-controls="collapseTools">
               About Cooking Mama <span class="float-end">&rsaquo;</span>
             </a>
             <div class="collapse" id="collapseAbout">
@@ -86,6 +98,7 @@
           </li>
         </ul>
       </div>
+
       <!-- Footer -->
       <div>
         <ul class="list-unstyled">
@@ -103,131 +116,91 @@
       </div>
     </nav>
     
-    <!-- Main content -->
-    <div class="container mt-5" style="margin-left: 270px;">
-      <h1 class="text-center">Edit Recipe</h1>
-      <form id="editRecipeForm">
-        <div class="mb-3">
-          <label for="recipeSelect" class="form-label">Select Recipe</label>
-          <select class="form-select" id="recipeSelect" name="selectedRecipe" required>
-            <option value="">Select a recipe...</option>
-          </select>
+    <div class="container mt-5" style="margin-left: 260px;">
+        <h1 class="text-center mb-4 fs-1 fw-bold" style="font-family: cursive;">Cooking Mama - Cari Bahan Makanan</h1>
+        <div class="d-flex justify-content-center">
+          <form id="searchIngredientsForm" class="d-flex flex-column w-75">
+            <div class="input-group mb-3">
+              <input type="text" id="ingredientQuery" class="form-control me-2 rounded-pill" placeholder="Cari Bahan Makanan">
+              <button type="submit" class="btn btn-primary rounded-pill">Cari</button>
+            </div>
+          </form>
         </div>
-        <div id="recipeDetails" class="d-none">
-          <div class="mb-3">
-            <label for="recipeName" class="form-label">Recipe Name</label>
-            <input type="text" class="form-control" id="recipeName" name="name" required>
-          </div>
-          <div class="mb-3">
-            <label for="ingredients" class="form-label">Ingredients</label>
-            <textarea class="form-control" id="ingredients" name="ingredients" rows="4" required></textarea>
-          </div>
-          <div class="mb-3">
-            <label for="steps" class="form-label">Steps</label>
-            <textarea class="form-control" id="steps" name="steps" rows="4" required></textarea>
-          </div>
-          <div class="text-center">
-            <button type="submit" class="btn btn-primary">Save Changes</button>
-            <button type="button" class="btn btn-danger" id="deleteRecipeBtn">Delete Recipe</button>
+        <h3 class="text-center mt-4">Hasil Pencarian Bahan</h3>
+        <div id="ingredientResults" class="row g-4 mt-4"></div>
+      </div>
+      
+    
+    
+<script>
+const apiKey = 'c77b4a6b7dad4a59b5e22314aafb30f2';
+const searchIngredientsForm = document.getElementById('searchIngredientsForm');
+const ingredientResultsDiv = document.getElementById('ingredientResults');
+
+// Fungsi untuk mendapatkan data bahan makanan
+async function searchIngredients(query, number = 9) {
+  const apiUrl = `https://api.spoonacular.com/food/ingredients/search?apiKey=${apiKey}&query=${query}&number=${number}`;
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    return data.results; // Kembalikan array hasil pencarian bahan
+  } catch (error) {
+    console.error('Error fetching ingredients:', error);
+    ingredientResultsDiv.innerHTML = `<p class="text-danger text-center">Terjadi kesalahan saat mengambil data bahan makanan.</p>`;
+  }
+}
+
+// Fungsi untuk menampilkan bahan makanan
+function displayIngredients(ingredients) {
+  ingredientResultsDiv.innerHTML = '';
+  if (!ingredients || ingredients.length === 0) {
+    ingredientResultsDiv.innerHTML = '<p class="text-center">Tidak ada bahan makanan ditemukan.</p>';
+    return;
+  }
+
+  ingredients.forEach(ingredient => {
+    const ingredientCard = `
+      <div class="col-md-4">
+        <div class="card shadow-lg border-0 h-100" style="overflow: hidden; transition: transform 0.3s;">
+          <img src="https://spoonacular.com/cdn/ingredients_250x250/${ingredient.image}" 
+               class="card-img-top" 
+               alt="${ingredient.name}" 
+               style="height: 200px; object-fit: cover;">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title text-primary fw-bold">${ingredient.name}</h5>
+            <p class="text-secondary small">ID: ${ingredient.id}</p>
+            <div class="mt-auto">
+              <button class="btn btn-success w-100 rounded-pill" onclick="alert('Bahan ID: ${ingredient.id}')">
+                <i class="bi bi-eye"></i> Lihat Detail
+              </button>
+            </div>
           </div>
         </div>
-      </form>
-    </div>
-  </div>
+      </div>
+    `;
+    ingredientResultsDiv.innerHTML += ingredientCard;
+  });
 
-  <script>
-    document.addEventListener("DOMContentLoaded", async function () {
-    const recipeSelect = document.getElementById("recipeSelect");
-    const recipeDetails = document.getElementById("recipeDetails");
-    const recipeNameInput = document.getElementById("recipeName");
-    const ingredientsTextarea = document.getElementById("ingredients");
-    const stepsTextarea = document.getElementById("steps");
-    const deleteRecipeBtn = document.getElementById("deleteRecipeBtn");
-
-    try {
-        // Fetch existing recipes from MongoDB
-        const response = await fetch("http://localhost:3000/recipes");
-        const recipes = await response.json();
-
-        // Populate recipe dropdown
-        recipes.forEach(recipe => {
-        const option = document.createElement("option");
-        option.value = recipe._id;
-        option.textContent = recipe.name;
-        recipeSelect.appendChild(option);
-        });
-
-        // Load selected recipe details
-        recipeSelect.addEventListener("change", () => {
-        const selectedRecipe = recipes.find(recipe => recipe._id === recipeSelect.value);
-        if (selectedRecipe) {
-            recipeNameInput.value = selectedRecipe.name;
-            ingredientsTextarea.value = selectedRecipe.ingredients;
-            stepsTextarea.value = selectedRecipe.steps;
-            recipeDetails.classList.remove("d-none");
-        } else {
-            recipeDetails.classList.add("d-none");
-        }
-        });
-
-        // Submit updated recipe to the server
-        document.getElementById("editRecipeForm").addEventListener("submit", async function (event) {
-        event.preventDefault();
-
-        const updatedRecipe = {
-            id: recipeSelect.value,
-            name: recipeNameInput.value,
-            ingredients: ingredientsTextarea.value,
-            steps: stepsTextarea.value,
-        };
-
-        try {
-            const updateResponse = await fetch("http://localhost:3000/update-recipe", {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(updatedRecipe),
-            });
-
-            if (updateResponse.ok) {
-            alert("Recipe updated successfully!");
-            window.location.reload();
-            } else {
-            const error = await updateResponse.json();
-            alert(error.message || "Failed to update the recipe.");
-            }
-        } catch (error) {
-            alert("Error occurred: " + error.message);
-        }
-        });
-
-        // Delete recipe
-        deleteRecipeBtn.addEventListener("click", async function () {
-        const recipeId = recipeSelect.value;
-
-        if (recipeId && confirm("Are you sure you want to delete this recipe?")) {
-            try {
-            const deleteResponse = await fetch(`http://localhost:3000/delete-recipe/${recipeId}`, {
-                method: "DELETE",
-            });
-
-            if (deleteResponse.ok) {
-                alert("Recipe deleted successfully!");
-                window.location.reload();
-            } else {
-                const error = await deleteResponse.json();
-                alert(error.message || "Failed to delete the recipe.");
-            }
-            } catch (error) {
-            alert("Error occurred: " + error.message);
-            }
-        }
-        });
-
-    } catch (error) {
-        alert("Error loading recipes: " + error.message);
-    }
+  // Tambahkan efek hover ke semua kartu
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    card.addEventListener('mouseover', () => {
+      card.style.transform = 'scale(1.05)';
     });
+    card.addEventListener('mouseout', () => {
+      card.style.transform = 'scale(1)';
+    });
+  });
+}
 
+// Event listener untuk form pencarian bahan makanan
+searchIngredientsForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const query = document.getElementById('ingredientQuery').value;
+
+  const ingredients = await searchIngredients(query, 12); // Cari bahan makanan
+  displayIngredients(ingredients);
+});
     document.addEventListener('DOMContentLoaded', function () {
     // Cek apakah pengguna sudah login
     const user = JSON.parse(localStorage.getItem('user'));
@@ -290,7 +263,13 @@
     `;
     signupLoginButton.outerHTML = userProfileHtml;
   }
+
+// Menampilkan 9 bahan makanan pertama ketika halaman dimuat
+window.addEventListener('load', async () => {
+  const ingredients = await searchIngredients('a');
+  displayIngredients(ingredients);
+});
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

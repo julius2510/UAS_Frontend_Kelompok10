@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cooking Mama - Login / Sign Up</title>
+  <title>Saved Recipes</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
@@ -14,10 +14,12 @@
       <!-- Header -->
       <div>
         <a href="/" style="text-decoration: none;">
-        <h2 class="fs-4 fw-bold text-primary text-center" style="font-family: cursive;">Cooking Mama</h2>
-      </a>
-        <button class="btn btn-success w-100 rounded-pill my-3">Sign Up / Log In</button>
-        <ul class="nav flex-column">  
+          <h2 class="fs-4 fw-bold text-primary text-center" style="font-family: cursive;">Cooking Mama</h2>
+        </a>
+        <a href="/loginin" style="text-decoration: none;">
+          <button class="btn btn-success w-100 rounded-pill my-3">Sign Up / Log In</button>
+        </a>
+        <ul class="nav flex-column">
           <!-- Search Recipe -->
           <li class="nav-item">
             <a class="nav-link text-dark" data-bs-toggle="collapse" href="#myRecipe" role="button" aria-expanded="false" aria-controls="myRecipe">
@@ -30,9 +32,8 @@
               </ul>
             </div>
           </li> 
-
-      <!-- Meal Planning -->
-      <li class="nav-item">
+       <!-- Meal Planning -->
+       <li class="nav-item">
         <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseMealPlanning" role="button" aria-expanded="false" aria-controls="collapseMealPlanning">
           Meal Planning <span class="float-end">&rsaquo;</span>
         </a>
@@ -44,8 +45,6 @@
           </ul>
         </div>
       </li>
-          <!-- Recipes -->
-
           <!-- Articles -->
           <li class="nav-item">
             <a href="/article" class="nav-link text-dark">Articles <span class="float-end"></span></a>
@@ -56,25 +55,34 @@
           </li>
           <!-- More Tools -->
           <li class="nav-item">
-            <a href="/Tools" class="nav-link text-dark">Tools <span class="float-end"></span></a>
+            <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseTools" role="button" aria-expanded="false" aria-controls="collapseTools">
+              More Tools <span class="float-end">&rsaquo;</span>
+            </a>
+            <div class="collapse" id="collapseTools">
+              <ul class="list-unstyled ps-3">
+                <li><a href="#" class="nav-link text-secondary">Cooking Timer</a></li>
+                <li><a href="#" class="nav-link text-secondary">Measurement Converter</a></li>
+              </ul>
+            </div>
+          </li>
+          <!-- Ingridients and Tools -->
+          <li class="nav-item">
+            <a class="nav-link text-dark" data-bs-toggle="collapse" href="#IntAndPro" role="button" aria-expanded="false" aria-controls="IntAndPro">
+              Ingredients & Groceries <span class="float-end">&rsaquo;</span>
+            </a>
+            <div class="collapse" id="IntAndPro">
+              <ul class="list-unstyled ps-3">
+                <li><a href="/searchIngredients" class="nav-link text-secondary">Search Ingredients</a></li>
+                <li><a href="/searchProducts" class="nav-link text-secondary">Search Grocery Products</a></li>
+              </ul>
+            </div>
           </li>
 
-  <!-- Ingridients and Tools -->
-  <li class="nav-item">
-    <a class="nav-link text-dark" data-bs-toggle="collapse" href="#IntAndPro" role="button" aria-expanded="false" aria-controls="IntAndPro">
-      Ingredients & Groceries <span class="float-end">&rsaquo;</span>
-    </a>
-    <div class="collapse" id="IntAndPro">
-      <ul class="list-unstyled ps-3">
-        <li><a href="/searchIngredients" class="nav-link text-secondary">Search Ingredients</a></li>
-        <li><a href="/searchProducts" class="nav-link text-secondary">Search Grocery Products</a></li>
-      </ul>
-    </div>
-  </li>
-        <!-- Chatbot -->
-        <li class="nav-item">
+         <!-- Chatbot -->
+         <li class="nav-item">
           <a href="/Chatbot" class="nav-link text-dark">Chatbot <span class="float-end"></span></a>
         </li>
+
           <li class="nav-item">
             <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseAbout" role="button" aria-expanded="false" aria-controls="collapseTools">
               About Cooking Mama <span class="float-end">&rsaquo;</span>
@@ -88,13 +96,10 @@
             </div>
           </li>
         </ul>
-
-        
       </div>
 
       <!-- Footer -->
       <div>
-       
         <ul class="list-unstyled">
           <li><a href="#" class="nav-link text-secondary">Privacy</a></li>
           <li><a href="#" class="nav-link text-secondary">Terms and Conditions</a></li>
@@ -109,64 +114,96 @@
         <p class="text-secondary mt-3 text-center small">© 2024 Cooking Mama. All rights reserved.</p>
       </div>
     </nav>
-
-    <!-- Main Content -->
+    
     <div class="container mt-5" style="margin-left: 260px;">
-      <h1 class="text-center mb-4 fs-1 fw-bold" style="font-family: cursive;">Login / Sign Up</h1>
+        <h1 class="text-center mb-4 fs-1 fw-bold" style="font-family: cursive;">Cooking Mama - Produk Makanan</h1>
+        <div class="d-flex justify-content-center">
+          <form id="searchProductsForm" class="d-flex flex-column w-75">
+            <div class="input-group mb-3">
+              <input type="text" id="productQuery" class="form-control me-2 rounded-pill" placeholder="Cari Produk Makanan">
+              <button type="submit" class="btn btn-primary rounded-pill">Cari</button>
+            </div>
+          </form>
+        </div>
+        <h3 class="text-center mt-4">Produk Populer</h3>
+        <div id="productResults" class="row g-4 mt-4"></div>
+      </div>
       
-      <!-- Tab navigation for Login / Sign Up -->
-      <ul class="nav nav-pills justify-content-center mb-4">
-        <li class="nav-item">
-          <a class="nav-link active" id="loginTab" data-bs-toggle="pill" href="#loginForm">Log In</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" id="signupTab" data-bs-toggle="pill" href="#signupForm">Sign Up</a>
-        </li>
-      </ul>
-
-   <!-- Form Content -->
-<div class="tab-content">
-  <!-- Login Form -->   
-  <div class="tab-pane fade show active" id="loginForm">
-    <form id="loginForm" method="POST" action="/login" class="mx-auto" style="max-width: 500px;">
-      <div class="mb-3">
-        <label for="loginEmail" class="form-label">Email / Phone Number</label>
-        <input type="email" class="form-control" id="loginEmail" name="email" required>
-      </div>
-      <div class="mb-3">
-        <label for="loginPassword" class="form-label">Password</label>
-        <input type="password" class="form-control" id="loginPassword" name="password" required>
-      </div>
-      <button type="submit" class="btn btn-primary w-100 rounded-pill">Log In</button>
-    </form>
-  </div>
-
-  <!-- Sign Up Form -->
-  <div class="tab-pane fade" id="signupForm">
-    <form id="signupForm" method="POST" action="/signup" class="mx-auto" style="max-width: 500px;">
-      <div class="mb-3">
-        <label for="signupName" class="form-label">Full Name</label>
-        <input type="text" class="form-control" id="signupName" name="name" required>
-      </div>
-      <div class="mb-3">
-        <label for="signupEmail" class="form-label">Email</label>
-        <input type="email" class="form-control" id="signupEmail" name="email" required>
-      </div>
-      <div class="mb-3">
-        <label for="signupPhone" class="form-label">Phone Number</label>
-        <input type="tel" class="form-control" id="signupPhone" name="phone" required>
-      </div>
-      <div class="mb-3">
-        <label for="signupPassword" class="form-label">Password</label>
-        <input type="password" class="form-control" id="signupPassword" name="password" required>
-      </div>
-      <button type="submit" class="btn btn-success w-100 rounded-pill">Sign Up</button>
-    </form>
-  </div>
-</div>
-
+    
+    
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+const apiKey = 'c77b4a6b7dad4a59b5e22314aafb30f2';
+const searchProductsForm = document.getElementById('searchProductsForm');
+const productResultsDiv = document.getElementById('productResults');
+
+// Fungsi untuk mendapatkan data produk
+async function searchProducts(query = '', number = 9) {
+  const apiUrl = `https://api.spoonacular.com/food/products/search?apiKey=${apiKey}&query=${query}&number=${number}`;
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    return data.products; // Kembalikan array produk
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    productResultsDiv.innerHTML = `<p class="text-danger text-center">Terjadi kesalahan saat mengambil data produk.</p>`;
+  }
+}
+
+// Fungsi untuk menampilkan produk
+function displayProducts(products) {
+  productResultsDiv.innerHTML = '';
+  if (!products || products.length === 0) {
+    productResultsDiv.innerHTML = '<p class="text-center">Tidak ada produk ditemukan.</p>';
+    return;
+  }
+
+  products.forEach(product => {
+    const productCard = `
+      <div class="col-md-4">
+        <div class="card shadow-lg border-0 h-100" style="overflow: hidden; transition: transform 0.3s;">
+          <img src="${product.image}" class="card-img-top" alt="${product.title}" style="height: 200px; object-fit: cover;">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title text-primary fw-bold">${product.title}</h5>
+            <p class="text-secondary small">ID: ${product.id || 'Tidak diketahui'}</p>
+            <div class="mt-auto">
+              <button class="btn btn-success w-100 rounded-pill" onclick="alert('Produk ID: ${product.id}')">
+                <i class="bi bi-eye"></i> Lihat Detail
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    productResultsDiv.innerHTML += productCard;
+  });
+
+  // Tambahkan efek hover ke semua kartu
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    card.addEventListener('mouseover', () => {
+      card.style.transform = 'scale(1.05)';
+    });
+    card.addEventListener('mouseout', () => {
+      card.style.transform = 'scale(1)';
+    });
+  });
+}
+
+// Event listener untuk form pencarian produk
+searchProductsForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const query = document.getElementById('productQuery').value;
+
+  const products = await searchProducts(query, 12); // Cari dengan query
+  displayProducts(products);
+});
+
+// Tampilkan produk default saat halaman dimuat
+document.addEventListener('DOMContentLoaded', async () => {
+  const defaultProducts = await searchProducts('', 9); // Ambil 9 produk default
+  displayProducts(defaultProducts);
+});
+    document.addEventListener('DOMContentLoaded', function () {
     // Cek apakah pengguna sudah login
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
@@ -228,8 +265,13 @@
     `;
     signupLoginButton.outerHTML = userProfileHtml;
   }
-</script>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+// Menampilkan 9 bahan makanan pertama ketika halaman dimuat
+window.addEventListener('load', async () => {
+  const Products = await searchProducts('B');
+  displayProducts(Products);
+});
+  </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
