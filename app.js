@@ -84,6 +84,20 @@ app.get('/searchIngridients', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'searchIngridients.html'));
 });
 
+// meal planning
+app.get('/mealPlanDay', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'mealPlanDay.html'));
+});
+
+app.get('/mealPlanWeek', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'mealPlanWeek.html'));
+});
+
+app.get('/generateMeal', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'generateMeal.html'));
+});
+
+
 
 // MongoDB Connection
 mongoose
