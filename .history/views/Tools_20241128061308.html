@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tools</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+  <div class="d-flex">
+    <!-- Sidebar Navbar -->
+    <nav class="bg-light p-3 d-flex flex-column justify-content-between" style="width: 250px; height: 100vh; position: fixed; top: 0; left: 0; overflow-y: auto;">
+      <!-- Header -->
+      <div>
+        <a href="/" style="text-decoration: none;">
+          <h2 class="fs-4 fw-bold text-primary text-center" style="font-family: cursive;">Cooking Mama</h2>
+        </a>
+        <a href="/loginin" style="text-decoration: none;">
+          <button class="btn btn-success w-100 rounded-pill my-3">Sign Up / Log In</button>
+        </a>
+        <ul class="nav flex-column">
+          <!-- Search Recipe -->
+          <li class="nav-item">
+            <a class="nav-link text-dark" data-bs-toggle="collapse" href="#myRecipe" role="button" aria-expanded="false" aria-controls="myRecipe">
+              My Recipe <span class="float-end">&rsaquo;</span>
+            </a>
+            <div class="collapse" id="myRecipe">
+              <ul class="list-unstyled ps-3">
+                <li><a href="/addRecipes" class="nav-link text-secondary">Add Recipe</a></li>
+                <li><a href="/searchrecipes" class="nav-link text-secondary">Search Recipe</a></li>
+              </ul>
+            </div>
+          </li> 
+       <!-- Meal Planning -->
+       <li class="nav-item">
+        <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseMealPlanning" role="button" aria-expanded="false" aria-controls="collapseMealPlanning">
+          Meal Planning <span class="float-end">&rsaquo;</span>
+        </a>
+        <div class="collapse" id="collapseMealPlanning">
+          <ul class="list-unstyled ps-3">
+            <li><a href="/mealPlanDay" class="nav-link text-secondary">Get Meal Plan Day</a></li>
+            <li><a href="/mealPlanWeek" class="nav-link text-secondary">Get Meal Plan Week</a></li>
+            <li><a href="/generateMeal" class="nav-link text-secondary">Generate a Meal Plan</a></li>
+          </ul>
+        </div>
+      </li>
+          <!-- Articles -->
+          <li class="nav-item">
+            <a href="/article" class="nav-link text-dark">Articles <span class="float-end"></span></a>
+          </li>
+          <!-- Saved Recipes -->
+          <li class="nav-item">
+            <a href="/resep" class="nav-link text-dark">Saved Recipes <span class="float-end"></span></a>
+          </li>
+          <!-- More Tools -->
+          <li class="nav-item">
+            <a href="/Tools" class="nav-link text-dark">Tools <span class="float-end"></span></a>
+          </li>
+
+          <!-- Ingridients and Tools -->
+          <li class="nav-item">
+            <a class="nav-link text-dark" data-bs-toggle="collapse" href="#IntAndPro" role="button" aria-expanded="false" aria-controls="IntAndPro">
+              Ingredients & Groceries <span class="float-end">&rsaquo;</span>
+            </a>
+            <div class="collapse" id="IntAndPro">
+              <ul class="list-unstyled ps-3">
+                <li><a href="/searchIngredients" class="nav-link text-secondary">Search Ingredients</a></li>
+                <li><a href="/searchProducts" class="nav-link text-secondary">Search Grocery Products</a></li>
+              </ul>
+            </div>
+          </li>
+
+         <!-- Chatbot -->
+         <li class="nav-item">
+          <a href="/Chatbot" class="nav-link text-dark">Chatbot <span class="float-end"></span></a>
+        </li>
+
+          <li class="nav-item">
+            <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseAbout" role="button" aria-expanded="false" aria-controls="collapseTools">
+              About Cooking Mama <span class="float-end">&rsaquo;</span>
+            </a>
+            <div class="collapse" id="collapseAbout">
+              <ul class="list-unstyled ps-3">
+                <li><a href="/about#about" class="nav-link text-secondary">About Us</a></li>
+                <li><a href="/about#contact" class="nav-link text-secondary">Contact Us</a></li>
+                <li><a href="/about#faq" class="nav-link text-secondary">FAQ</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Footer -->
+      <div>
+        <ul class="list-unstyled">
+          <li><a href="#" class="nav-link text-secondary">Privacy</a></li>
+          <li><a href="#" class="nav-link text-secondary">Terms and Conditions</a></li>
+          <li><a href="#" class="nav-link text-secondary">Copyright</a></li>
+        </ul>
+        <div class="d-flex justify-content-between mt-3">
+          <a href="#" class="text-secondary"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-pinterest"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-youtube"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-tiktok"></i></a>
+        </div>
+        <p class="text-secondary mt-3 text-center small">© 2024 Cooking Mama. All rights reserved.</p>
+      </div>
+    </nav>
+    
+    <div class="container mt-5" style="margin-left: 260px;">
+        <h1 class="text-center mb-4 fs-1 fw-bold" style="font-family: cursive;">Cooking Mama - Detail Equipment</h1>
+        <div class="d-flex justify-content-center">
+          <form id="searchEquipmentForm" class="d-flex flex-column w-75">
+            <div class="input-group mb-3">
+              <input type="number" id="equipmentId" class="form-control me-2 rounded-pill" placeholder="Masukkan ID Equipment">
+              <button type="submit" class="btn btn-primary rounded-pill">Cari</button>
+            </div>
+          </form>
+        </div>
+        <h3 class="text-center mt-4">Detail Equipment</h3>
+        <div id="equipmentResult" class="mt-4 text-center"></div>
+      </div>
+      
+    
+    
+<script>
+const apiKey = '50868189a1fb41c5b8276487a99412ac';
+const searchEquipmentForm = document.getElementById('searchEquipmentForm');
+const equipmentResultDiv = document.getElementById('equipmentResult');
+
+// Fungsi untuk mendapatkan detail equipment berdasarkan ID
+async function getEquipmentById(id) {
+  const apiUrl = `https://api.spoonacular.com/food/products/${id}?apiKey=${apiKey}`;
+  try {
+    const response = await fetch(apiUrl);
+    if (!response.ok) throw new Error('Equipment tidak ditemukan');
+    const data = await response.json();
+    return data; // Kembalikan detail equipment
+  } catch (error) {
+    console.error('Error fetching equipment:', error);
+    equipmentResultDiv.innerHTML = `<p class="text-danger">Terjadi kesalahan: ${error.message}</p>`;
+  }
+}
+
+// Fungsi untuk menampilkan detail equipment
+function displayEquipment(equipment) {
+  if (!equipment) {
+    equipmentResultDiv.innerHTML = '<p>Detail equipment tidak ditemukan.</p>';
+    return;
+  }
+
+  equipmentResultDiv.innerHTML = `
+    <div class="card shadow-lg border-0 mx-auto mb-5" style="width: 50%;">
+      <img src="${equipment.image}" class="card-img-top" alt="${equipment.title}" style="height: 200px; object-fit: cover;">
+      <div class="card-body">
+        <h5 class="card-title text-primary fw-bold">${equipment.title || 'Nama Tidak Diketahui'}</h5>
+        <p class="text-secondary">ID: ${equipment.id || 'Tidak diketahui'}</p>
+        <p class="text-muted">${equipment.description || 'Deskripsi tidak tersedia.'}</p>
+        <a href="${equipment.link || '#'}" target="_blank" >
+ 
+        </a>
+      </div>
+    </div>
+  `;
+}
+
+// Event listener untuk form pencarian equipment
+searchEquipmentForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const id = document.getElementById('equipmentId').value;
+
+  if (!id) {
+    equipmentResultDiv.innerHTML = '<p class="text-danger">Harap masukkan ID Equipment!</p>';
+    return;
+  }
+
+  const equipment = await getEquipmentById(id); // Cari berdasarkan ID
+  displayEquipment(equipment);
+});
+    document.addEventListener('DOMContentLoaded', function () {
+    // Cek apakah pengguna sudah login
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+      updateNavbarForLoggedInUser(user);
+    }
+
+    // Tambahkan event listener untuk form login dan signup
+    document.getElementById("loginForm").addEventListener("submit", handleFormSubmit);
+    document.getElementById("signupForm").addEventListener("submit", handleFormSubmit);
+  });
+
+  async function handleFormSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const formType = event.target.id; // loginForm atau signupForm
+    const data = Object.fromEntries(formData.entries());
+    const formAction = formType === "loginForm" 
+      ? "http://localhost:3000/login" 
+      : "http://localhost:3000/signup";
+
+    try {
+      const response = await fetch(formAction, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        alert(error.message || "Terjadi kesalahan");
+        return;
+      }
+
+      const result = await response.json();
+      // Simpan data pengguna ke localStorage
+      localStorage.setItem("user", JSON.stringify(result.user));
+
+      // Update navbar dengan informasi pengguna
+      updateNavbarForLoggedInUser(result.user);
+
+      // Arahkan ke halaman utama atau profil
+      window.location.href = "/";
+    } catch (error) {
+      alert("Terjadi kesalahan: " + error.message);
+    }
+  }
+
+  function updateNavbarForLoggedInUser(user) {
+    const navbar = document.querySelector("nav");
+    const signupLoginButton = navbar.querySelector(".btn");
+    const userProfileHtml = `
+      <div class="d-flex align-items-center ms-5">
+        <i class="bi bi-person-circle fs-3 text-secondary me-2" style="pointer-events: none;"></i>
+        <a href="/profile" style="text-decoration: none;">${user.name}</a>
+      </div>
+    `;
+    signupLoginButton.outerHTML = userProfileHtml;
+  }
+
+// Menampilkan 9 bahan makanan pertama ketika halaman dimuat
+window.addEventListener('load', async () => {
+  const Products = await searchProducts('B');
+  displayProducts(Products);
+});
+  </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

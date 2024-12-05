@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Recipe</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="d-flex">
+    <nav class="bg-light p-3 d-flex flex-column justify-content-between" style="width: 250px; height: 100vh; position: fixed; top: 0; left: 0; overflow-y: auto;">
+      <!-- Header -->
+      <div>
+        <a href="/" style="text-decoration: none;">
+          <h2 class="fs-4 fw-bold text-primary text-center" style="font-family: cursive;">Cooking Mama</h2>
+        </a>
+        <a href="/loginin" style="text-decoration: none;">
+          <button class="btn btn-success w-100 rounded-pill my-3">Sign Up / Log In</button>
+        </a>
+        <ul class="nav flex-column">
+          <!-- Sidebar menu items -->
+          <li class="nav-item">
+            <a class="nav-link text-dark" data-bs-toggle="collapse" href="#myRecipe" role="button" aria-expanded="false" aria-controls="myRecipe">
+              My Recipe <span class="float-end">&rsaquo;</span>
+            </a>
+            <div class="collapse" id="myRecipe">
+              <ul class="list-unstyled ps-3">
+                <li><a href="/addRecipes" class="nav-link text-secondary">Add Recipe</a></li>
+                <li><a href="/searchrecipes" class="nav-link text-secondary">Search Recipe</a></li>
+              </ul>
+            </div>
+          </li> 
+        <!-- Meal Planning -->
+        <li class="nav-item">
+          <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseMealPlanning" role="button" aria-expanded="false" aria-controls="collapseMealPlanning">
+            Meal Planning <span class="float-end">&rsaquo;</span>
+          </a>
+          <div class="collapse" id="collapseMealPlanning">
+            <ul class="list-unstyled ps-3">
+              <li><a href="/mealPlanDay" class="nav-link text-secondary">Get Meal Plan Day</a></li>
+              <li><a href="/mealPlanWeek" class="nav-link text-secondary">Get Meal Plan Week</a></li>
+              <li><a href="/generateMeal" class="nav-link text-secondary">Generate a Meal Plan</a></li>
+            </ul>
+          </div>
+        </li>
+
+          <li class="nav-item">
+            <a href="/article" class="nav-link text-dark">Articles</a>
+          </li>
+          <li class="nav-item">
+            <a href="/resep" class="nav-link text-dark">Saved Recipes</a>
+          </li>
+          <li class="nav-item">
+            <a href="/Tools" class="nav-link text-dark">Tools <span class="float-end"></span></a>
+          </li>
+
+      <!-- Ingridients and Tools -->
+      <li class="nav-item">
+        <a class="nav-link text-dark" data-bs-toggle="collapse" href="#IntAndPro" role="button" aria-expanded="false" aria-controls="IntAndPro">
+          Ingredients & Groceries <span class="float-end">&rsaquo;</span>
+        </a>
+        <div class="collapse" id="IntAndPro">
+          <ul class="list-unstyled ps-3">
+            <li><a href="/searchIngredients" class="nav-link text-secondary">Search Ingredients</a></li>
+            <li><a href="/searchProducts" class="nav-link text-secondary">Search Grocery Products</a></li>
+          </ul>
+        </div>
+      </li>
+       <!-- Chatbot -->
+       <li class="nav-item">
+        <a href="/Chatbot" class="nav-link text-dark">Chatbot <span class="float-end"></span></a>
+      </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseAbout" role="button" aria-expanded="false" aria-controls="collapseAbout">
+              About Cooking Mama <span class="float-end">&rsaquo;</span>
+            </a>
+            <div class="collapse" id="collapseAbout">
+              <ul class="list-unstyled ps-3">
+                <li><a href="/about#about" class="nav-link text-secondary">About Us</a></li>
+                <li><a href="/about#contact" class="nav-link text-secondary">Contact Us</a></li>
+                <li><a href="/about#faq" class="nav-link text-secondary">FAQ</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- Footer -->
+      <div>
+        <ul class="list-unstyled">
+          <li><a href="#" class="nav-link text-secondary">Privacy</a></li>
+          <li><a href="#" class="nav-link text-secondary">Terms and Conditions</a></li>
+          <li><a href="#" class="nav-link text-secondary">Copyright</a></li>
+        </ul>
+        <div class="d-flex justify-content-between mt-3">
+          <a href="#" class="text-secondary"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-pinterest"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-youtube"></i></a>
+          <a href="#" class="text-secondary"><i class="bi bi-tiktok"></i></a>
+        </div>
+        <p class="text-secondary mt-3 text-center small">© 2024 Cooking Mama. All rights reserved.</p>
+      </div>
+    </nav>
+    
+    <!-- Main content -->
+    <div class="container mt-5" style="margin-left: 270px;">
+      <h1 class="text-center">Edit Recipe</h1>
+      <form id="editRecipeForm">
+        <div class="mb-3">
+          <label for="recipeSelect" class="form-label">Select Recipe</label>
+          <select class="form-select" id="recipeSelect" name="selectedRecipe" required>
+            <option value="">Select a recipe...</option>
+          </select>
+        </div>
+        <div id="recipeDetails" class="d-none">
+          <div class="mb-3">
+            <label for="recipeName" class="form-label">Recipe Name</label>
+            <input type="text" class="form-control" id="recipeName" name="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="ingredients" class="form-label">Ingredients</label>
+            <textarea class="form-control" id="ingredients" name="ingredients" rows="4" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="steps" class="form-label">Steps</label>
+            <textarea class="form-control" id="steps" name="steps" rows="4" required></textarea>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <button type="button" class="btn btn-danger" id="deleteRecipeBtn">Delete Recipe</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", async function () {
+    const recipeSelect = document.getElementById("recipeSelect");
+    const recipeDetails = document.getElementById("recipeDetails");
+    const recipeNameInput = document.getElementById("recipeName");
+    const ingredientsTextarea = document.getElementById("ingredients");
+    const stepsTextarea = document.getElementById("steps");
+    const deleteRecipeBtn = document.getElementById("deleteRecipeBtn");
+
+    try {
+        const response = await fetch("http://localhost:3000/recipes");
+        const recipes = await response.json();
+
+        recipes.forEach(recipe => {
+        const option = document.createElement("option");
+        option.value = recipe._id;
+        option.textContent = recipe.name;
+        recipeSelect.appendChild(option);
+        });
+
+        recipeSelect.addEventListener("change", () => {
+        const selectedRecipe = recipes.find(recipe => recipe._id === recipeSelect.value);
+        if (selectedRecipe) {
+            recipeNameInput.value = selectedRecipe.name;
+            ingredientsTextarea.value = selectedRecipe.ingredients;
+            stepsTextarea.value = selectedRecipe.steps;
+            recipeDetails.classList.remove("d-none");
+        } else {
+            recipeDetails.classList.add("d-none");
+        }
+        });
+
+        document.getElementById("editRecipeForm").addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const updatedRecipe = {
+            id: recipeSelect.value,
+            name: recipeNameInput.value,
+            ingredients: ingredientsTextarea.value,
+            steps: stepsTextarea.value,
+        };
+
+        try {
+            const updateResponse = await fetch("http://localhost:3000/update-recipe", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(updatedRecipe),
+            });
+
+            if (updateResponse.ok) {
+            alert("Recipe updated successfully!");
+            window.location.reload();
+            } else {
+            const error = await updateResponse.json();
+            alert(error.message || "Failed to update the recipe.");
+            }
+        } catch (error) {
+            alert("Error occurred: " + error.message);
+        }
+        });
+
+        // Delete recipe
+        deleteRecipeBtn.addEventListener("click", async function () {
+        const recipeId = recipeSelect.value;
+
+        if (recipeId && confirm("Are you sure you want to delete this recipe?")) {
+            try {
+            const deleteResponse = await fetch(`http://localhost:3000/delete-recipe/${recipeId}`, {
+                method: "DELETE",
+            });
+
+            if (deleteResponse.ok) {
+                alert("Recipe deleted successfully!");
+                window.location.reload();
+            } else {
+                const error = await deleteResponse.json();
+                alert(error.message || "Failed to delete the recipe.");
+            }
+            } catch (error) {
+            alert("Error occurred: " + error.message);
+            }
+        }
+        });
+
+    } catch (error) {
+        alert("Error loading recipes: " + error.message);
+    }
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+      updateNavbarForLoggedInUser(user);
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", handleFormSubmit);
+    document.getElementById("signupForm").addEventListener("submit", handleFormSubmit);
+  });
+
+  async function handleFormSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const formType = event.target.id; 
+    const data = Object.fromEntries(formData.entries());
+    const formAction = formType === "loginForm" 
+      ? "http://localhost:3000/login" 
+      : "http://localhost:3000/signup";
+
+    try {
+      const response = await fetch(formAction, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        alert(error.message || "Terjadi kesalahan");
+        return;
+      }
+
+      const result = await response.json();
+      localStorage.setItem("user", JSON.stringify(result.user));
+
+      // Update navbar dengan informasi pengguna
+      updateNavbarForLoggedInUser(result.user);
+
+      // Arahkan ke halaman utama atau profil
+      window.location.href = "/";
+    } catch (error) {
+      alert("Terjadi kesalahan: " + error.message);
+    }
+  }
+
+  function updateNavbarForLoggedInUser(user) {
+    const navbar = document.querySelector("nav");
+    const signupLoginButton = navbar.querySelector(".btn");
+    const userProfileHtml = `
+      <div class="d-flex align-items-center ms-5">
+        <i class="bi bi-person-circle fs-3 text-secondary me-2" style="pointer-events: none;"></i>
+        <a href="/profile" style="text-decoration: none;">${user.name}</a>
+      </div>
+    `;
+    signupLoginButton.outerHTML = userProfileHtml;
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
