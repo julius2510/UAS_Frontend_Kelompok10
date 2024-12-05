@@ -48,6 +48,14 @@ app.get('/article', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'articles.html'));
 });
 
+app.get('/createarticle', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'createarticle.html'));
+});
+
+app.get('/editarticle', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views', 'editarticle.html'));
+});
+
 app.get('/resep', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'saved_recipes.html'));
 });
@@ -132,8 +140,6 @@ const userSchema = new mongoose.Schema({
   password: String,
 });
 
-
-
 // Recipe Schema
 const recipesSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -141,9 +147,17 @@ const recipesSchema = new mongoose.Schema({
   steps: { type: String, required: true },
 });
 
+//Article Schema
+const articleSchema = new mongoose.Schema({
+  title: { type: String, required: true },
+  content: { type: String, required: true },
+  tags: [String],
+});
+
 // Models
 const User = mongoose.model('User', userSchema);
 const Recipe = mongoose.model('Recipe', recipesSchema);
+const Article = mongoose.model('Article', articleSchema);
 
 // Sign Up Route
 app.post('/signup', async (req, res) => {
@@ -358,6 +372,64 @@ app.post('/api/delete-account', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: 'Error deleting account' });
+  }
+});
+
+// Create Article Route
+app.post('/api/create-article', async (req, res) => {
+  const { title, content, tags } = req.body;
+
+  // Check if title and content are provided
+  if (!title || !content) {
+    return res.status(400).json({ message: 'Title and content are required.' });
+  }
+
+  try {
+    const article = new Article({ title, content, tags });
+    await article.save();
+    res.status(201).json({ message: 'Article created successfully', article });
+  } catch (error) {
+    res.status(500).json({ message: 'Error creating article', error });
+  }
+});
+
+
+app.get('/api/articles', async (req, res) => {
+  const tag = req.query.tag || ''; // Get the tag query parameter
+  try {
+    let articles;
+    if (tag === 'All' || tag === '') {
+      articles = await Article.find(); // If 'All', fetch all articles
+    } else {
+      articles = await Article.find({ tags: tag }); // Fetch articles by tag
+    }
+    res.json(articles); // Send articles as JSON
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching articles' });
+  }
+});
+
+// Endpoint untuk mengupdate artikel
+app.put('/api/articles/:id', async (req, res) => {
+  const { id } = req.params;
+  const { title, content, tags } = req.body;
+
+  try {
+    const updatedArticle = await Article.findByIdAndUpdate(id, { title, content, tags }, { new: true });
+    res.json(updatedArticle);
+  } catch (err) {
+    res.status(500).send('Error updating article');
+  }
+});
+
+// Endpoint untuk menghapus artikel
+app.delete('/api/articles/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Article.findByIdAndDelete(id);
+    res.send('Article deleted');
+  } catch (err) {
+    res.status(500).send('Error deleting article');
   }
 });
 
