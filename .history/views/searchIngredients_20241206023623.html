@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tools</title>
+  <title>Search Ingredients</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
 </head>
 <body>
@@ -34,19 +33,21 @@
               </ul>
             </div>
           </li> 
-       <!-- Meal Planning -->
-       <li class="nav-item">
-        <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseMealPlanning" role="button" aria-expanded="false" aria-controls="collapseMealPlanning">
-          Meal Planning <span class="float-end">&rsaquo;</span>
-        </a>
-        <div class="collapse" id="collapseMealPlanning">
-          <ul class="list-unstyled ps-3">
-            <li><a href="/mealPlanDay" class="nav-link text-secondary">Get Meal Plan Day</a></li>
-            <li><a href="/mealPlanWeek" class="nav-link text-secondary">Get Meal Plan Week</a></li>
-            <li><a href="/generateMeal" class="nav-link text-secondary">Generate a Meal Plan</a></li>
-          </ul>
-        </div>
-      </li>
+
+          <!-- Meal Planning -->
+         <li class="nav-item">
+          <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseMealPlanning" role="button" aria-expanded="false" aria-controls="collapseMealPlanning">
+            Meal Planning <span class="float-end">&rsaquo;</span>
+          </a>
+          <div class="collapse" id="collapseMealPlanning">
+            <ul class="list-unstyled ps-3">
+              <li><a href="/mealPlanDay" class="nav-link text-secondary">Get Meal Plan Day</a></li>
+              <li><a href="/mealPlanWeek" class="nav-link text-secondary">Get Meal Plan Week</a></li>
+              <li><a href="/generateMeal" class="nav-link text-secondary">Generate a Meal Plan</a></li>
+            </ul>
+          </div>
+        </li>
+
           <!-- Articles -->
           <li class="nav-item">
             <a href="/article" class="nav-link text-dark">Articles <span class="float-end"></span></a>
@@ -60,23 +61,23 @@
             <a href="/Tools" class="nav-link text-dark">Tools <span class="float-end"></span></a>
           </li>
 
-          <!-- Ingridients and Tools -->
-          <li class="nav-item">
-            <a class="nav-link text-dark" data-bs-toggle="collapse" href="#IntAndPro" role="button" aria-expanded="false" aria-controls="IntAndPro">
-              Ingredients & Groceries <span class="float-end">&rsaquo;</span>
-            </a>
-            <div class="collapse" id="IntAndPro">
-              <ul class="list-unstyled ps-3">
-                <li><a href="/searchIngredients" class="nav-link text-secondary">Search Ingredients</a></li>
-                <li><a href="/searchProducts" class="nav-link text-secondary">Search Grocery Products</a></li>
-              </ul>
-            </div>
-          </li>
-
-         <!-- Chatbot -->
-         <li class="nav-item">
-          <a href="/Chatbot" class="nav-link text-dark">Chatbot <span class="float-end"></span></a>
+        <!-- Ingridients and Tools -->
+        <li class="nav-item">
+          <a class="nav-link text-dark" data-bs-toggle="collapse" href="#IntAndPro" role="button" aria-expanded="false" aria-controls="IntAndPro">
+            Ingredients & Groceries <span class="float-end">&rsaquo;</span>
+          </a>
+          <div class="collapse" id="IntAndPro">
+            <ul class="list-unstyled ps-3">
+              <li><a href="/searchIngredients" class="nav-link text-secondary">Search Ingredients</a></li>
+              <li><a href="/searchProducts" class="nav-link text-secondary">Search Grocery Products</a></li>
+            </ul>
+          </div>
         </li>
+
+           <!-- Chatbot -->
+           <li class="nav-item">
+            <a href="/Chatbot" class="nav-link text-dark">Chatbot <span class="float-end"></span></a>
+          </li>
 
           <li class="nav-item">
             <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseAbout" role="button" aria-expanded="false" aria-controls="collapseTools">
@@ -111,87 +112,98 @@
     </nav>
     
     <div class="container mt-5" style="margin-left: 260px;">
-      <h1 class="text-center mb-4 fs-1 fw-bold" style="font-family: cursive;">Cooking Mama - Detail Equipment</h1>
-      <div class="d-flex justify-content-center">
-          <form id="searchEquipmentForm" class="d-flex flex-column w-75">
-              <div class="input-group mb-3">
-                  <input type="number" id="recipeId" class="form-control me-2 rounded-pill" placeholder="Masukkan 6 Digit ID Tools">
-                  <button type="submit" class="btn btn-primary rounded-pill">Cari</button>
-              </div>
+        <h1 class="text-center mb-4 fs-1 fw-bold" style="font-family: cursive;">Cooking Mama - Cari Bahan Makanan</h1>
+        <div class="d-flex justify-content-center">
+          <form id="searchIngredientsForm" class="d-flex flex-column w-75">
+            <div class="input-group mb-3">
+              <input type="text" id="ingredientQuery" class="form-control me-2 rounded-pill" placeholder="Cari Bahan Makanan">
+              <button type="submit" class="btn btn-primary rounded-pill">Cari</button>
+            </div>
           </form>
+        </div>
+        <h3 class="text-center mt-4">Hasil Pencarian Bahan</h3>
+        <div id="ingredientResults" class="row g-4 mt-4"></div>
       </div>
-      <h3 class="text-center mt-4">Detail Equipment</h3>
-      <div id="equipmentResult" class="mt-4 text-center"></div>
-  </div>
       
     
     
 <script>
-const apiKey = '3a4bb7bba04f48c2a301ce1c3f1df88e'; 
-const searchEquipmentForm = document.getElementById('searchEquipmentForm');
-const equipmentResultDiv = document.getElementById('equipmentResult');
+const apiKey = '3a4bb7bba04f48c2a301ce1c3f1df88e';
+const searchIngredientsForm = document.getElementById('searchIngredientsForm');
+const ingredientResultsDiv = document.getElementById('ingredientResults');
 
-async function getEquipmentByRecipeId(recipeId) {
-    const apiUrl = `https://api.spoonacular.com/recipes/${recipeId}/equipmentWidget.json?apiKey=${apiKey}`;
-    try {
-        const response = await fetch(apiUrl);
-        if (!response.ok) throw new Error('Peralatan tidak ditemukan untuk resep ini');
-        const data = await response.json();
-        return data; 
-    } catch (error) {
-        console.error('Error fetching equipment:', error);
-        return null;
-    }
+// Fungsi untuk mendapatkan data bahan makanan
+async function searchIngredients(query, number = 9) {
+  const apiUrl = `https://api.spoonacular.com/food/ingredients/search?apiKey=${apiKey}&query=${query}&number=${number}`;
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    return data.results; // Kembalikan array hasil pencarian bahan
+  } catch (error) {
+    console.error('Error fetching ingredients:', error);
+    ingredientResultsDiv.innerHTML = `<p class="text-danger text-center">Terjadi kesalahan saat mengambil data bahan makanan.</p>`;
+  }
 }
 
-function displayEquipment(equipmentData) {
-    if (!equipmentData || !equipmentData.equipment || equipmentData.equipment.length === 0) {
-        equipmentResultDiv.innerHTML = '<p class="text-danger">Detail equipment tidak ditemukan atau tidak tersedia.</p>';
-        return;
-    }
+// Fungsi untuk menampilkan bahan makanan
+function displayIngredients(ingredients) {
+  ingredientResultsDiv.innerHTML = '';
+  if (!ingredients || ingredients.length === 0) {
+    ingredientResultsDiv.innerHTML = '<p class="text-center">Tidak ada bahan makanan ditemukan.</p>';
+    return;
+  }
 
-    const equipmentList = equipmentData.equipment.map(equipment => `
-        <div class="card shadow-sm border-0 mx-auto mb-3" style="width: 70%;">
-            <div class="row g-0">
-                <div class="col-md-4">
-                  <img src="${equipment.image ? `https://spoonacular.com/cdn/equipment_100x100/${equipment.image}` : 'https://via.placeholder.com/150'}"
-                  class="img-fluid rounded-start" alt="${equipment.name}">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title text-primary fw-bold">${equipment.name}</h5>
-                    </div>
-                </div>
+  ingredients.forEach(ingredient => {
+    const ingredientCard = `
+      <div class="col-md-4">
+        <div class="card shadow-lg border-0 h-100" style="overflow: hidden; transition: transform 0.3s;">
+          <img src="https://spoonacular.com/cdn/ingredients_250x250/${ingredient.image}" 
+               class="card-img-top" 
+               alt="${ingredient.name}" 
+               style="height: 200px; object-fit: cover;">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title text-primary fw-bold">${ingredient.name}</h5>
+            <p class="text-secondary small">ID: ${ingredient.id}</p>
+            <div class="mt-auto">
+              <button class="btn btn-success w-100 rounded-pill" onclick="alert('Bahan ID: ${ingredient.id}')">
+                <i class="bi bi-eye"></i> Lihat Detail
+              </button>
             </div>
+          </div>
         </div>
-    `).join('');
-
-    equipmentResultDiv.innerHTML = `
-        <h4 class="text-success mb-4">Daftar Peralatan</h4>
-        ${equipmentList}
+      </div>
     `;
+    ingredientResultsDiv.innerHTML += ingredientCard;
+  });
+
+  // Tambahkan efek hover ke semua kartu
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    card.addEventListener('mouseover', () => {
+      card.style.transform = 'scale(1.05)';
+    });
+    card.addEventListener('mouseout', () => {
+      card.style.transform = 'scale(1)';
+    });
+  });
 }
 
-searchEquipmentForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const recipeId = document.getElementById('recipeId').value;
+// Event listener untuk form pencarian bahan makanan
+searchIngredientsForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const query = document.getElementById('ingredientQuery').value;
 
-    if (!recipeId) {
-        equipmentResultDiv.innerHTML = '<p class="text-danger">Harap masukkan ID Tools!</p>';
-        return;
-    }
-
-    equipmentResultDiv.innerHTML = '<p class="text-info">Sedang mencari...</p>';
-    const equipmentData = await getEquipmentByRecipeId(recipeId);
-    displayEquipment(equipmentData); 
+  const ingredients = await searchIngredients(query, 12); // Cari bahan makanan
+  displayIngredients(ingredients);
 });
     document.addEventListener('DOMContentLoaded', function () {
-
+    // Cek apakah pengguna sudah login
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
       updateNavbarForLoggedInUser(user);
     }
 
+    // Tambahkan event listener untuk form login dan signup
     document.getElementById("loginForm").addEventListener("submit", handleFormSubmit);
     document.getElementById("signupForm").addEventListener("submit", handleFormSubmit);
   });
@@ -249,8 +261,8 @@ searchEquipmentForm.addEventListener('submit', async (e) => {
 
 // Menampilkan 9 bahan makanan pertama ketika halaman dimuat
 window.addEventListener('load', async () => {
-  const Products = await searchProducts('B');
-  displayProducts(Products);
+  const ingredients = await searchIngredients('a');
+  displayIngredients(ingredients);
 });
   </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
