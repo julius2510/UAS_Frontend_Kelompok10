@@ -109,83 +109,88 @@
     </nav>
     
     <div class="container mt-5" style="margin-left: 260px;">
-        <h1 class="text-center mb-4 fs-1 fw-bold" style="font-family: cursive;">Cooking Mama - Detail Equipment</h1>
-        <div class="d-flex justify-content-center">
+      <h1 class="text-center mb-4 fs-1 fw-bold" style="font-family: cursive;">Cooking Mama - Detail Equipment</h1>
+      <div class="d-flex justify-content-center">
           <form id="searchEquipmentForm" class="d-flex flex-column w-75">
-            <div class="input-group mb-3">
-              <input type="number" id="equipmentId" class="form-control me-2 rounded-pill" placeholder="Masukkan ID Equipment">
-              <button type="submit" class="btn btn-primary rounded-pill">Cari</button>
-            </div>
+              <div class="input-group mb-3">
+                  <input type="number" id="recipeId" class="form-control me-2 rounded-pill" placeholder="Masukkan 6 Digit ID Tools">
+                  <button type="submit" class="btn btn-primary rounded-pill">Cari</button>
+              </div>
           </form>
-        </div>
-        <h3 class="text-center mt-4">Detail Equipment</h3>
-        <div id="equipmentResult" class="mt-4 text-center"></div>
       </div>
+      <h3 class="text-center mt-4">Detail Equipment</h3>
+      <div id="equipmentResult" class="mt-4 text-center"></div>
+  </div>
       
     
     
 <script>
-const apiKey = '3a4bb7bba04f48c2a301ce1c3f1df88e';
+const apiKey = '3a4bb7bba04f48c2a301ce1c3f1df88e'; 
 const searchEquipmentForm = document.getElementById('searchEquipmentForm');
 const equipmentResultDiv = document.getElementById('equipmentResult');
 
-// Fungsi untuk mendapatkan detail equipment berdasarkan ID
-async function getEquipmentById(id) {
-  const apiUrl = `https://api.spoonacular.com/food/products/${id}?apiKey=${apiKey}`;
-  try {
-    const response = await fetch(apiUrl);
-    if (!response.ok) throw new Error('Equipment tidak ditemukan');
-    const data = await response.json();
-    return data; // Kembalikan detail equipment
-  } catch (error) {
-    console.error('Error fetching equipment:', error);
-    equipmentResultDiv.innerHTML = `<p class="text-danger">Terjadi kesalahan: ${error.message}</p>`;
-  }
+async function getEquipmentByRecipeId(recipeId) {
+    const apiUrl = `https://api.spoonacular.com/recipes/${recipeId}/equipmentWidget.json?apiKey=${apiKey}`;
+    try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error('Peralatan tidak ditemukan untuk resep ini');
+        const data = await response.json();
+        return data; 
+    } catch (error) {
+        console.error('Error fetching equipment:', error);
+        return null;
+    }
 }
 
-// Fungsi untuk menampilkan detail equipment
-function displayEquipment(equipment) {
-  if (!equipment) {
-    equipmentResultDiv.innerHTML = '<p>Detail equipment tidak ditemukan.</p>';
-    return;
-  }
+function displayEquipment(equipmentData) {
+    if (!equipmentData || !equipmentData.equipment || equipmentData.equipment.length === 0) {
+        equipmentResultDiv.innerHTML = '<p class="text-danger">Detail equipment tidak ditemukan atau tidak tersedia.</p>';
+        return;
+    }
 
-  equipmentResultDiv.innerHTML = `
-    <div class="card shadow-lg border-0 mx-auto mb-5" style="width: 50%;">
-      <img src="${equipment.image}" class="card-img-top" alt="${equipment.title}" style="height: 200px; object-fit: cover;">
-      <div class="card-body">
-        <h5 class="card-title text-primary fw-bold">${equipment.title || 'Nama Tidak Diketahui'}</h5>
-        <p class="text-secondary">ID: ${equipment.id || 'Tidak diketahui'}</p>
-        <p class="text-muted">${equipment.description || 'Deskripsi tidak tersedia.'}</p>
-        <a href="${equipment.link || '#'}" target="_blank" >
- 
-        </a>
-      </div>
-    </div>
-  `;
+    const equipmentList = equipmentData.equipment.map(equipment => `
+        <div class="card shadow-sm border-0 mx-auto mb-3" style="width: 70%;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="${equipment.image ? `https://spoonacular.com/cdn/equipment_100x100/${equipment.image}` : 'https://via.placeholder.com/150'}"
+                  class="img-fluid rounded-start" alt="${equipment.name}">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary fw-bold">${equipment.name}</h5>
+                        <p class="text-muted">ID: ${equipment.id}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    equipmentResultDiv.innerHTML = `
+        <h4 class="text-success mb-4">Daftar Peralatan</h4>
+        ${equipmentList}
+    `;
 }
 
-// Event listener untuk form pencarian equipment
 searchEquipmentForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const id = document.getElementById('equipmentId').value;
+    e.preventDefault();
+    const recipeId = document.getElementById('recipeId').value;
 
-  if (!id) {
-    equipmentResultDiv.innerHTML = '<p class="text-danger">Harap masukkan ID Equipment!</p>';
-    return;
-  }
+    if (!recipeId) {
+        equipmentResultDiv.innerHTML = '<p class="text-danger">Harap masukkan ID Resep!</p>';
+        return;
+    }
 
-  const equipment = await getEquipmentById(id); // Cari berdasarkan ID
-  displayEquipment(equipment);
+    equipmentResultDiv.innerHTML = '<p class="text-info">Sedang mencari...</p>';
+    const equipmentData = await getEquipmentByRecipeId(recipeId);
+    displayEquipment(equipmentData); 
 });
     document.addEventListener('DOMContentLoaded', function () {
-    // Cek apakah pengguna sudah login
+
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
       updateNavbarForLoggedInUser(user);
     }
 
-    // Tambahkan event listener untuk form login dan signup
     document.getElementById("loginForm").addEventListener("submit", handleFormSubmit);
     document.getElementById("signupForm").addEventListener("submit", handleFormSubmit);
   });
