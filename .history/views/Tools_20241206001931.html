@@ -113,7 +113,7 @@
       <div class="d-flex justify-content-center">
           <form id="searchEquipmentForm" class="d-flex flex-column w-75">
               <div class="input-group mb-3">
-                  <input type="number" id="recipeId" class="form-control me-2 rounded-pill" placeholder="Masukkan 6 Digit ID Tools">
+                  <input type="number" id="recipeId" class="form-control me-2 rounded-pill" placeholder="Masukkan ID Resep">
                   <button type="submit" class="btn btn-primary rounded-pill">Cari</button>
               </div>
           </form>
@@ -191,6 +191,7 @@ searchEquipmentForm.addEventListener('submit', async (e) => {
       updateNavbarForLoggedInUser(user);
     }
 
+    // Tambahkan event listener untuk form login dan signup
     document.getElementById("loginForm").addEventListener("submit", handleFormSubmit);
     document.getElementById("signupForm").addEventListener("submit", handleFormSubmit);
   });

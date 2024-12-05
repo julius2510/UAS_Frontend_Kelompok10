@@ -113,7 +113,7 @@
       <div class="d-flex justify-content-center">
           <form id="searchEquipmentForm" class="d-flex flex-column w-75">
               <div class="input-group mb-3">
-                  <input type="number" id="recipeId" class="form-control me-2 rounded-pill" placeholder="Masukkan 6 Digit ID Tools">
+                  <input type="number" id="recipeId" class="form-control me-2 rounded-pill" placeholder="Masukkan ID Resep">
                   <button type="submit" class="btn btn-primary rounded-pill">Cari</button>
               </div>
           </form>
@@ -125,7 +125,7 @@
     
     
 <script>
-const apiKey = '3a4bb7bba04f48c2a301ce1c3f1df88e'; 
+const apiKey = '3a4bb7bba04f48c2a301ce1c3f1df88e'; // API Key Spoonacular
 const searchEquipmentForm = document.getElementById('searchEquipmentForm');
 const equipmentResultDiv = document.getElementById('equipmentResult');
 
@@ -135,13 +135,14 @@ async function getEquipmentByRecipeId(recipeId) {
         const response = await fetch(apiUrl);
         if (!response.ok) throw new Error('Peralatan tidak ditemukan untuk resep ini');
         const data = await response.json();
-        return data; 
+        return data; // Mengembalikan data equipment
     } catch (error) {
         console.error('Error fetching equipment:', error);
         return null;
     }
 }
 
+// Fungsi untuk menampilkan daftar equipment
 function displayEquipment(equipmentData) {
     if (!equipmentData || !equipmentData.equipment || equipmentData.equipment.length === 0) {
         equipmentResultDiv.innerHTML = '<p class="text-danger">Detail equipment tidak ditemukan atau tidak tersedia.</p>';
@@ -171,6 +172,7 @@ function displayEquipment(equipmentData) {
     `;
 }
 
+// Event listener untuk form pencarian equipment
 searchEquipmentForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const recipeId = document.getElementById('recipeId').value;
@@ -181,16 +183,17 @@ searchEquipmentForm.addEventListener('submit', async (e) => {
     }
 
     equipmentResultDiv.innerHTML = '<p class="text-info">Sedang mencari...</p>';
-    const equipmentData = await getEquipmentByRecipeId(recipeId);
-    displayEquipment(equipmentData); 
+    const equipmentData = await getEquipmentByRecipeId(recipeId); // Mengambil daftar peralatan berdasarkan ID resep
+    displayEquipment(equipmentData); // Menampilkan daftar peralatan
 });
     document.addEventListener('DOMContentLoaded', function () {
-
+    // Cek apakah pengguna sudah login
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
       updateNavbarForLoggedInUser(user);
     }
 
+    // Tambahkan event listener untuk form login dan signup
     document.getElementById("loginForm").addEventListener("submit", handleFormSubmit);
     document.getElementById("signupForm").addEventListener("submit", handleFormSubmit);
   });
