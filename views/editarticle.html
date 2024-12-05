@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Article</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    /* Custom style to add space to the left of the content to avoid overlap with the sidebar */
+    .main-content {
+      margin-left: 250px; /* Same width as sidebar */
+    }
+  </style>
+</head>
+<body>
+    <div class="d-flex">
+        <!-- Sidebar Navbar -->
+        <nav class="bg-light p-3 d-flex flex-column justify-content-between" style="width: 250px; height: 100vh; position: fixed; top: 0; left: 0; overflow-y: auto;">
+        <!-- Header -->
+        <div>
+            <a href="/" class="text-decoration-none">
+                <h2 class="fs-4 fw-bold text-primary text-center" style="font-family: cursive;">Cooking Mama</h2>
+            </a>
+            <a href="/login" class="text-decoration-none">
+            <button class="btn btn-success w-100 rounded-pill my-3">Sign Up / Log In</button>
+            </a>
+            <ul class="nav flex-column">
+            <!-- Menu Items -->
+            <li class="nav-item">
+                <a class="nav-link text-dark" data-bs-toggle="collapse" href="#myRecipe" role="button" aria-expanded="false" aria-controls="myRecipe">
+                My Recipe <span class="float-end">&rsaquo;</span>
+                </a>
+                <div class="collapse" id="myRecipe">
+                <ul class="list-unstyled ps-3">
+                    <li><a href="/addRecipes" class="nav-link text-secondary">Add Recipe</a></li>
+                    <li><a href="/searchrecipes" class="nav-link text-secondary">Search Recipe</a></li>
+                </ul>
+                </div>
+            </li>
+            <!-- Meal Planning -->
+            <li class="nav-item">
+                <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseMealPlanning" role="button" aria-expanded="false" aria-controls="collapseMealPlanning">
+                Meal Planning <span class="float-end">&rsaquo;</span>
+                </a>
+                <div class="collapse" id="collapseMealPlanning">
+                <ul class="list-unstyled ps-3">
+                    <li><a href="#" class="nav-link text-secondary">Weekly Plan</a></li>
+                    <li><a href="#" class="nav-link text-secondary">Shopping List</a></li>
+                </ul>
+                </div>
+            </li>
+            <!-- Articles -->
+            <li class="nav-item">
+                <a href="/article" class="nav-link text-dark">Articles</a>
+            </li>
+            <!-- Saved Recipes -->
+            <li class="nav-item">
+                <a href="/resep" class="nav-link text-dark">Saved Recipes</a>
+            </li>
+            <!-- More Tools -->
+            <li class="nav-item">
+                <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseTools" role="button" aria-expanded="false" aria-controls="collapseTools">
+                More Tools <span class="float-end">&rsaquo;</span>
+                </a>
+                <div class="collapse" id="collapseTools">
+                <ul class="list-unstyled ps-3">
+                    <li><a href="#" class="nav-link text-secondary">Cooking Timer</a></li>
+                    <li><a href="#" class="nav-link text-secondary">Measurement Converter</a></li>
+                </ul>
+                </div>
+            </li>
+            <!-- Ingredients and Tools -->
+            <li class="nav-item">
+            <a class="nav-link text-dark" data-bs-toggle="collapse" href="#IntAndPro" role="button" aria-expanded="false" aria-controls="IntAndPro">
+                Ingredients and Groceries <span class="float-end">&rsaquo;</span>
+            </a>
+            <div class="collapse" id="IntAndPro">
+                <ul class="list-unstyled ps-3">
+                <li><a href="/searchIngredients" class="nav-link text-secondary">Search Ingredients</a></li>
+                <li><a href="/searchProducts" class="nav-link text-secondary">Search Grocery Products</a></li>
+                </ul>
+            </div>
+            </li>
+            <!-- About -->
+            <li class="nav-item">
+                <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseAbout" role="button" aria-expanded="false" aria-controls="collapseAbout">
+                About Cooking Mama <span class="float-end">&rsaquo;</span>
+                </a>
+                <div class="collapse" id="collapseAbout">
+                <ul class="list-unstyled ps-3">
+                    <li><a href="/about#about" class="nav-link text-secondary">About Us</a></li>
+                    <li><a href="/about#contact" class="nav-link text-secondary">Contact Us</a></li>
+                    <li><a href="/about#faq" class="nav-link text-secondary">FAQ</a></li>
+                </ul>
+                </div>
+            </li>
+            </ul>
+        </div>
+
+        <!-- Footer -->
+        <div>
+            <ul class="list-unstyled">
+            <li><a href="#" class="nav-link text-secondary">Privacy</a></li>
+            <li><a href="#" class="nav-link text-secondary">Terms and Conditions</a></li>
+            <li><a href="#" class="nav-link text-secondary">Copyright</a></li>
+            </ul>
+            <div class="d-flex justify-content-between mt-3">
+            <a href="#" class="text-secondary" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-secondary" aria-label="Pinterest"><i class="bi bi-pinterest"></i></a>
+            <a href="#" class="text-secondary" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+            <a href="#" class="text-secondary" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
+            </div>
+            <p class="text-secondary mt-3 text-center small">© 2024 Cooking Mama. All rights reserved.</p>
+        </div>
+        </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5 main-content">
+        <h1>Edit or Delete Article</h1>
+    
+        <!-- Dropdown for selecting article -->
+        <div class="mb-3">
+          <label for="articleSelect" class="form-label">Select Article</label>
+          <select class="form-select" id="articleSelect" required>
+            <option value="">Select an article to edit/delete</option>
+          </select>
+        </div>
+
+        <!-- Form to edit article -->
+        <form id="editArticleForm">
+            <div class="mb-3">
+                <label for="title" class="form-label">Article Title</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+            <div class="mb-3">
+                <label for="content" class="form-label">Article Content</label>
+                <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="tags" class="form-label">Article Tags</label>
+                <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Healthy" id="tagHealthy" name="tags">
+                <label class="form-check-label" for="tagHealthy">Healthy</label>
+                </div>
+                <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Quickly" id="tagQuickly" name="tags">
+                <label class="form-check-label" for="tagQuick">Quick</label>
+                </div>
+                <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Easy" id="tagEasy" name="tags">
+                <label class="form-check-label" for="tagEasy">Easy</label>
+                </div>
+                <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="Dessert" id="tagDessert" name="tags">
+                <label class="form-check-label" for="tagDessert">Dessert</label>
+                </div>
+            </div>
+            <div class="d-flex ">
+                <button type="submit" class="btn btn-warning">Update Article</button>
+                <button type="button" class="btn btn-danger ms-5" id="deleteBtn">Delete Article</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/Controller/editarticleController.js"></script>
+</body>
+</html>
