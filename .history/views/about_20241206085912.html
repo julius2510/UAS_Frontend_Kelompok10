@@ -9,6 +9,8 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+
+
   <style>
     .card {
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -19,8 +21,10 @@
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
   </style>
+
 </head>
 <body>
+
   <div class="d-flex">
     <!-- Sidebar Navbar -->
     <nav class="bg-light p-3 d-flex flex-column justify-content-between" style="width: 250px; height: 100vh; position: fixed; top: 0; left: 0; overflow-y: auto;">
@@ -45,10 +49,6 @@
               </ul>
             </div>
           </li> 
-           <!-- Saved Recipes -->
-           <li class="nav-item">
-            <a href="/resep" class="nav-link text-dark">Saved Recipes <span class="float-end"></span></a>
-          </li>
        <!-- Meal Planning -->
        <li class="nav-item">
         <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseMealPlanning" role="button" aria-expanded="false" aria-controls="collapseMealPlanning">
@@ -62,6 +62,18 @@
           </ul>
         </div>
       </li>
+          <!-- Articles -->
+          <li class="nav-item">
+            <a href="/article" class="nav-link text-dark">Articles <span class="float-end"></span></a>
+          </li>
+          <!-- Saved Recipes -->
+          <li class="nav-item">
+            <a href="/resep" class="nav-link text-dark">Saved Recipes <span class="float-end"></span></a>
+          </li>
+         <!-- More Tools -->
+         <li class="nav-item">
+          <a href="/Tools" class="nav-link text-dark">Tools <span class="float-end"></span></a>
+        </li>
        <!-- Ingridients and Tools -->
        <li class="nav-item">
         <a class="nav-link text-dark" data-bs-toggle="collapse" href="#IntAndPro" role="button" aria-expanded="false" aria-controls="IntAndPro">
@@ -74,18 +86,11 @@
           </ul>
         </div>
       </li>
-        <!-- Tools -->
-        <li class="nav-item">
-          <a href="/Tools" class="nav-link text-dark">Tools <span class="float-end"></span></a>
-        </li>
-          <!-- Chatbot -->
+       <!-- Chatbot -->
        <li class="nav-item">
         <a href="/Chatbot" class="nav-link text-dark">Chatbot <span class="float-end"></span></a>
       </li>
-          <!-- Articles -->
-          <li class="nav-item">
-            <a href="/article" class="nav-link text-dark">Articles <span class="float-end"></span></a>
-          </li>         
+      
           <li class="nav-item">
             <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseAbout" role="button" aria-expanded="false" aria-controls="collapseTools">
               About Cooking Mama <span class="float-end">&rsaquo;</span>

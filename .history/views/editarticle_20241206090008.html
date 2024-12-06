@@ -21,79 +21,81 @@
         <nav class="bg-light p-3 d-flex flex-column justify-content-between" style="width: 250px; height: 100vh; position: fixed; top: 0; left: 0; overflow-y: auto;">
         <!-- Header -->
         <div>
-          <a href="/" style="text-decoration: none;">
-            <h2 class="fs-4 fw-bold text-primary text-center" style="font-family: cursive;">Cooking Mama</h2>
-          </a>
-          <a href="/loginin" style="text-decoration: none;">
+            <a href="/" class="text-decoration-none">
+                <h2 class="fs-4 fw-bold text-primary text-center" style="font-family: cursive;">Cooking Mama</h2>
+            </a>
+            <a href="/login" class="text-decoration-none">
             <button class="btn btn-success w-100 rounded-pill my-3">Sign Up / Log In</button>
-          </a>
-          <ul class="nav flex-column">
-            <!-- Search Recipe -->
+            </a>
+            <ul class="nav flex-column">
+            <!-- Menu Items -->
             <li class="nav-item">
-              <a class="nav-link text-dark" data-bs-toggle="collapse" href="#myRecipe" role="button" aria-expanded="false" aria-controls="myRecipe">
+                <a class="nav-link text-dark" data-bs-toggle="collapse" href="#myRecipe" role="button" aria-expanded="false" aria-controls="myRecipe">
                 My Recipe <span class="float-end">&rsaquo;</span>
-              </a>
-              <div class="collapse" id="myRecipe">
+                </a>
+                <div class="collapse" id="myRecipe">
                 <ul class="list-unstyled ps-3">
-                  <li><a href="/addRecipes" class="nav-link text-secondary">Add Recipe</a></li>
-                  <li><a href="/searchrecipes" class="nav-link text-secondary">Search Recipe</a></li>
+                    <li><a href="/addRecipes" class="nav-link text-secondary">Add Recipe</a></li>
+                    <li><a href="/searchrecipes" class="nav-link text-secondary">Search Recipe</a></li>
                 </ul>
-              </div>
-            </li> 
-             <!-- Saved Recipes -->
-             <li class="nav-item">
-              <a href="/resep" class="nav-link text-dark">Saved Recipes <span class="float-end"></span></a>
+                </div>
             </li>
-         <!-- Meal Planning -->
-         <li class="nav-item">
-          <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseMealPlanning" role="button" aria-expanded="false" aria-controls="collapseMealPlanning">
-            Meal Planning <span class="float-end">&rsaquo;</span>
-          </a>
-          <div class="collapse" id="collapseMealPlanning">
-            <ul class="list-unstyled ps-3">
-              <li><a href="/mealPlanDay" class="nav-link text-secondary">Get Meal Plan Day</a></li>
-              <li><a href="/mealPlanWeek" class="nav-link text-secondary">Get Meal Plan Week</a></li>
-              <li><a href="/generateMeal" class="nav-link text-secondary">Generate a Meal Plan</a></li>
-            </ul>
-          </div>
-        </li>
-         <!-- Ingridients and Tools -->
-         <li class="nav-item">
-          <a class="nav-link text-dark" data-bs-toggle="collapse" href="#IntAndPro" role="button" aria-expanded="false" aria-controls="IntAndPro">
-            Ingredients & Groceries <span class="float-end">&rsaquo;</span>
-          </a>
-          <div class="collapse" id="IntAndPro">
-            <ul class="list-unstyled ps-3">
-              <li><a href="/searchIngredients" class="nav-link text-secondary">Search Ingredients</a></li>
-              <li><a href="/searchProducts" class="nav-link text-secondary">Search Grocery Products</a></li>
-            </ul>
-          </div>
-        </li>
-          <!-- Tools -->
+          <!-- Meal Planning -->
+          <li class="nav-item">
+            <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseMealPlanning" role="button" aria-expanded="false" aria-controls="collapseMealPlanning">
+              Meal Planning <span class="float-end">&rsaquo;</span>
+            </a>
+            <div class="collapse" id="collapseMealPlanning">
+              <ul class="list-unstyled ps-3">
+                <li><a href="/mealPlanDay" class="nav-link text-secondary">Get Meal Plan Day</a></li>
+                <li><a href="/mealPlanWeek" class="nav-link text-secondary">Get Meal Plan Week</a></li>
+                <li><a href="/generateMeal" class="nav-link text-secondary">Generate a Meal Plan</a></li>
+              </ul>
+            </div>
+          </li>
+            <!-- Articles -->
+            <li class="nav-item">
+                <a href="/article" class="nav-link text-dark">Articles</a>
+            </li>
+            <!-- Saved Recipes -->
+            <li class="nav-item">
+                <a href="/resep" class="nav-link text-dark">Saved Recipes</a>
+            </li>
+             <!-- More Tools -->
           <li class="nav-item">
             <a href="/Tools" class="nav-link text-dark">Tools <span class="float-end"></span></a>
           </li>
-            <!-- Chatbot -->
-         <li class="nav-item">
-          <a href="/Chatbot" class="nav-link text-dark">Chatbot <span class="float-end"></span></a>
-        </li>
-            <!-- Articles -->
+
+            <!-- Ingredients and Tools -->
             <li class="nav-item">
-              <a href="/article" class="nav-link text-dark">Articles <span class="float-end"></span></a>
-            </li>         
-            <li class="nav-item">
-              <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseAbout" role="button" aria-expanded="false" aria-controls="collapseTools">
-                About Cooking Mama <span class="float-end">&rsaquo;</span>
-              </a>
-              <div class="collapse" id="collapseAbout">
+            <a class="nav-link text-dark" data-bs-toggle="collapse" href="#IntAndPro" role="button" aria-expanded="false" aria-controls="IntAndPro">
+                Ingredients and Groceries <span class="float-end">&rsaquo;</span>
+            </a>
+            <div class="collapse" id="IntAndPro">
                 <ul class="list-unstyled ps-3">
-                  <li><a href="/about#about" class="nav-link text-secondary">About Us</a></li>
-                  <li><a href="/about#contact" class="nav-link text-secondary">Contact Us</a></li>
-                  <li><a href="/about#faq" class="nav-link text-secondary">FAQ</a></li>
+                <li><a href="/searchIngredients" class="nav-link text-secondary">Search Ingredients</a></li>
+                <li><a href="/searchProducts" class="nav-link text-secondary">Search Grocery Products</a></li>
                 </ul>
-              </div>
+            </div>
             </li>
-          </ul>
+            <!-- Chatbot -->
+       <li class="nav-item">
+        <a href="/Chatbot" class="nav-link text-dark">Chatbot <span class="float-end"></span></a>
+      </li>
+            <!-- About -->
+            <li class="nav-item">
+                <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseAbout" role="button" aria-expanded="false" aria-controls="collapseAbout">
+                About Cooking Mama <span class="float-end">&rsaquo;</span>
+                </a>
+                <div class="collapse" id="collapseAbout">
+                <ul class="list-unstyled ps-3">
+                    <li><a href="/about#about" class="nav-link text-secondary">About Us</a></li>
+                    <li><a href="/about#contact" class="nav-link text-secondary">Contact Us</a></li>
+                    <li><a href="/about#faq" class="nav-link text-secondary">FAQ</a></li>
+                </ul>
+                </div>
+            </li>
+            </ul>
         </div>
 
         <!-- Footer -->

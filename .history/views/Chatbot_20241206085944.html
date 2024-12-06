@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cooking Mama - Chatbot</title>
+  <title>Chatbot</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
@@ -66,12 +66,12 @@
       <!-- Header -->
       <div>
         <a href="/" style="text-decoration: none;">
-          <h2 class="fs-4 fw-bold text-primary text-center" style="font-family: cursive;">Cooking Mama</h2>
-        </a>
+            <h2 class="fs-4 fw-bold text-primary text-center" style="font-family: cursive;">Cooking Mama</h2>
+          </a>
         <a href="/loginin" style="text-decoration: none;">
-          <button class="btn btn-success w-100 rounded-pill my-3">Sign Up / Log In</button>
-        </a>
-        <ul class="nav flex-column">
+        <button class="btn btn-success w-100 rounded-pill my-3">Sign Up / Log In</button>
+      </a>
+        <ul class="nav flex-column">  
           <!-- Search Recipe -->
           <li class="nav-item">
             <a class="nav-link text-dark" data-bs-toggle="collapse" href="#myRecipe" role="button" aria-expanded="false" aria-controls="myRecipe">
@@ -84,47 +84,50 @@
               </ul>
             </div>
           </li> 
-           <!-- Saved Recipes -->
+           <!-- Meal Planning -->
            <li class="nav-item">
-            <a href="/resep" class="nav-link text-dark">Saved Recipes <span class="float-end"></span></a>
+            <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseMealPlanning" role="button" aria-expanded="false" aria-controls="collapseMealPlanning">
+              Meal Planning <span class="float-end">&rsaquo;</span>
+            </a>
+            <div class="collapse" id="collapseMealPlanning">
+              <ul class="list-unstyled ps-3">
+                <li><a href="/mealPlanDay" class="nav-link text-secondary">Get Meal Plan Day</a></li>
+                <li><a href="/mealPlanWeek" class="nav-link text-secondary">Get Meal Plan Week</a></li>
+                <li><a href="/generateMeal" class="nav-link text-secondary">Generate a Meal Plan</a></li>
+              </ul>
+            </div>
           </li>
-       <!-- Meal Planning -->
-       <li class="nav-item">
-        <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseMealPlanning" role="button" aria-expanded="false" aria-controls="collapseMealPlanning">
-          Meal Planning <span class="float-end">&rsaquo;</span>
-        </a>
-        <div class="collapse" id="collapseMealPlanning">
-          <ul class="list-unstyled ps-3">
-            <li><a href="/mealPlanDay" class="nav-link text-secondary">Get Meal Plan Day</a></li>
-            <li><a href="/mealPlanWeek" class="nav-link text-secondary">Get Meal Plan Week</a></li>
-            <li><a href="/generateMeal" class="nav-link text-secondary">Generate a Meal Plan</a></li>
-          </ul>
-        </div>
-      </li>
-       <!-- Ingridients and Tools -->
-       <li class="nav-item">
-        <a class="nav-link text-dark" data-bs-toggle="collapse" href="#IntAndPro" role="button" aria-expanded="false" aria-controls="IntAndPro">
-          Ingredients & Groceries <span class="float-end">&rsaquo;</span>
-        </a>
-        <div class="collapse" id="IntAndPro">
-          <ul class="list-unstyled ps-3">
-            <li><a href="/searchIngredients" class="nav-link text-secondary">Search Ingredients</a></li>
-            <li><a href="/searchProducts" class="nav-link text-secondary">Search Grocery Products</a></li>
-          </ul>
-        </div>
-      </li>
-        <!-- Tools -->
-        <li class="nav-item">
-          <a href="/Tools" class="nav-link text-dark">Tools <span class="float-end"></span></a>
-        </li>
-          <!-- Chatbot -->
-       <li class="nav-item">
-        <a href="/Chatbot" class="nav-link text-dark">Chatbot <span class="float-end"></span></a>
-      </li>
           <!-- Articles -->
           <li class="nav-item">
             <a href="/article" class="nav-link text-dark">Articles <span class="float-end"></span></a>
-          </li>         
+          </li>
+          <!-- Saved Recipes -->
+          <li class="nav-item">
+            <a href="/resep" class="nav-link text-dark">Saved Recipes <span class="float-end"></span></a>
+          </li>
+          <!-- More Tools -->
+           <!-- Chatbot -->
+           <li class="nav-item">
+            <a href="/Tools" class="nav-link text-dark">Tools <span class="float-end"></span></a>
+          </li>
+
+         <!-- Ingridients and Groceries -->
+         <li class="nav-item">
+          <a class="nav-link text-dark" data-bs-toggle="collapse" href="#IntAndPro" role="button" aria-expanded="false" aria-controls="IntAndPro">
+            Ingredients & Groceries <span class="float-end">&rsaquo;</span>
+          </a>
+          <div class="collapse" id="IntAndPro">
+            <ul class="list-unstyled ps-3">
+              <li><a href="/searchIngredients" class="nav-link text-secondary">Search Ingredients</a></li>
+              <li><a href="/searchProducts" class="nav-link text-secondary">Search Grocery Products</a></li>
+            </ul>
+          </div>
+        </li>
+          <!-- Chatbot -->
+          <li class="nav-item">
+            <a href="/Chatbot" class="nav-link text-dark">Chatbot <span class="float-end"></span></a>
+          </li>
+
           <li class="nav-item">
             <a class="nav-link text-dark" data-bs-toggle="collapse" href="#collapseAbout" role="button" aria-expanded="false" aria-controls="collapseTools">
               About Cooking Mama <span class="float-end">&rsaquo;</span>
@@ -138,6 +141,8 @@
             </div>
           </li>
         </ul>
+
+        
       </div>
 
       <!-- Footer -->
