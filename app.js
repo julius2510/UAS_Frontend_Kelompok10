@@ -14,8 +14,84 @@ app.use(express.urlencoded({ extended: true }));
 // Static file serving
 app.use(express.static(path.join(__dirname, 'scripts')));
 app.use(express.static(path.join(__dirname, 'images')));
+app.use(express.static(path.join(__dirname, 'Controller')));
 
-// Routes
+
+//Routes Bagian Controller //////////////////////////////////////////////////////////////////
+app.get('/aboutController', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Controller', 'aboutController.js'));
+});
+
+app.get('/addrecipeController', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Controller', 'addrecipeController.js'));
+});
+
+app.get('/articleController', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Controller', 'articleController.js'));
+});
+
+app.get('/chatbotController', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Controller', 'chatbotController.js'));
+});
+
+app.get('/createarticleController', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Controller', 'createarticleController.js'));
+});
+
+app.get('/editarticleController', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Controller', 'editarticleController.js'));
+});
+
+app.get('/editrecipeController', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Controller', 'editrecipeController.js'));
+});
+
+app.get('/generateMealController', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Controller', 'generateMealController.js'));
+});
+
+app.get('/index', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Controller', 'IndexController.js'));
+});
+
+app.get('/loginController', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Controller', 'loginController.js'));
+});
+
+app.get('/mealPlanDayController', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Controller', 'mealPlanDayController.js'));
+});
+
+app.get('/mealPlanWeekController', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Controller', 'mealPlanWeekController.js'));
+});
+
+app.get('/profileController', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Controller', 'profileController.js'));
+});
+
+app.get('/saveController', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Controller', 'saveController.js'));
+});
+
+app.get('/searchController', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Controller', 'searchController.js'));
+});
+
+app.get('/searchPController', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Controller', 'searchPController.js'));
+});
+
+app.get('/searchRController', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Controller', 'searchRController.js'));
+});
+
+app.get('/toolsController', (req, res) => {
+  res.sendFile(path.join(__dirname, 'Controller', 'toolsController.js'));
+});
+
+
+// Routes bagian views dan images //////////////////////////////////////////////////////////////////
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
